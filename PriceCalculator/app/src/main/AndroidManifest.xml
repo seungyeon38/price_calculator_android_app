@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PriceCalculator">
         <activity
-            android:name=".ShowGradientList"
-            android:exported="true"
-            android:label="@string/title_activity_show_gradient_list"
-            android:theme="@style/Theme.PriceCalculator.NoActionBar" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
