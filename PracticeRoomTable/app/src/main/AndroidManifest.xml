@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PriceCalculator">
         <activity
-            android:name="com.example.Practice_room_table.DataViewerActivity"
+            android:name=".UpdateDataActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.Practice_room_table.MainActivity"
+            android:name=".DataViewerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

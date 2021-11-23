@@ -1,16 +1,24 @@
 package com.example.Practice_room_table.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.Practice_room_table.Databases.StudentsTable;
+import com.example.Practice_room_table.Helper.DatabaseHelper;
 import com.example.Practice_room_table.R;
+import com.example.Practice_room_table.UpdateDataActivity;
+import com.example.Practice_room_table.databinding.ActivityMainBinding;
 
 import java.util.List;
 
@@ -25,15 +33,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     List<StudentsTable> studentsTableList;
     View view;
 
+    DatabaseHelper helper;
+
+
     // 아이템 뷰를 저장하는 ViewHolder class
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView roll_no_tv, name_tv, standard_tv;
+        ImageView more_iv;
+
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             roll_no_tv = itemView.findViewById(R.id.roll_no_tv);
             name_tv = itemView.findViewById(R.id.name_tv);
             standard_tv = itemView.findViewById(R.id.standard_tv);
+
+            more_iv = itemView.findViewById(R.id.more_iv);
         }
     }
 
@@ -53,6 +68,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     public StudentAdapter(Context context, List<StudentsTable> studentsTableList){
         this.context = context;
         this.studentsTableList = studentsTableList;
+
+        helper = DatabaseHelper.getInstance(context);
     }
 
     // viewType 형태의 아이템 뷰를 위한 ViewHolder 객체 생성
@@ -71,6 +88,33 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
             holder.roll_no_tv.setText(String.valueOf(studentsTable.getId()));
             holder.name_tv.setText(String.valueOf(studentsTable.getStu_name()));
             holder.standard_tv.setText(String.valueOf(studentsTable.getStu_standard()));
+
+            holder.more_iv.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    PopupMenu popupMenu = new PopupMenu(context, holder.more_iv);
+                    popupMenu.getMenuInflater().inflate(R.menu.items, popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()){
+                                case R.id.update_id:
+                                    context.startActivity(new Intent(context, UpdateDataActivity.class)
+                                    .putExtra("stu_table", studentsTable));
+                                    break;
+                                case R.id.delete_id:
+                                    helper.deleteData(studentsTable);
+                                    studentsTableList.remove(position);
+                                    notifyDataSetChanged();
+                                    notifyItemRangeChanged(position, studentsTableList.size());
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
         }
     }
 

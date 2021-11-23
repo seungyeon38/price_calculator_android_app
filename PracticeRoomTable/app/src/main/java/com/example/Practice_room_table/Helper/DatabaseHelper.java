@@ -1,5 +1,6 @@
 package com.example.Practice_room_table.Helper;
 
+import android.content.AsyncQueryHandler;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -76,5 +77,54 @@ public class DatabaseHelper {
 
         AllStudents allStudents = new AllStudents();
         allStudents.execute();
+    }
+
+    // Update Data
+    public void updateData(StudentsTable table, String stu_name, String stu_standard){
+        class UpdateStudentData extends AsyncTask<Void, Void, StudentsTable>{
+
+            @Override
+            protected StudentsTable doInBackground(Void... voids) {
+                table.setStu_name(stu_name);
+                table.setStu_standard(stu_standard);
+
+                DatabaseClient.getInstance(context)
+                        .getStudentsDatabase()
+                        .studentDAO()
+                        .updateData(table);
+
+                return table;
+            }
+
+            @Override
+            protected void onPostExecute(StudentsTable studentsTable) {
+                super.onPostExecute(studentsTable);
+                if(table != null){
+                    Toast.makeText(context, "Updated" + "\n" + table.getStu_name() + "\n" +
+                            table.getStu_standard(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        UpdateStudentData updateStudentData = new UpdateStudentData();
+        updateStudentData.execute();
+    }
+
+    //Delete Data
+    public void deleteData(StudentsTable studentsTable){
+        class DeleteData extends AsyncTask<Void, Void, Void>{
+            @Override
+            protected Void doInBackground(Void... voids) {
+                DatabaseClient.getInstance(context)
+                        .getStudentsDatabase()
+                        .studentDAO()
+                        .deleteData(studentsTable);
+
+                return null;
+            }
+        }
+
+        DeleteData deleteData = new DeleteData();
+        deleteData.execute();
     }
 }

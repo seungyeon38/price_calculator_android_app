@@ -42,6 +42,16 @@
                     android:paddingBottom="5dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/big_tv"/>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_weight="0.3"
+                    android:layout_width="5dp"
+                    android:background="@drawable/big_tv"/>
             </TableRow>
         </TableLayout>
         <!--메인액티비티에 리사이클러뷰를 추가-->
