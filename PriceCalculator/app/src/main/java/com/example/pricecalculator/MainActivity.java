@@ -17,5 +17,17 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setTitle("원알팔");
+    }
+
+    public void showGradients(View view) {
+    }
+
+    public void showMenus(View view) {
+    }
+
+    public void addMenu(View view) {
     }
 }
