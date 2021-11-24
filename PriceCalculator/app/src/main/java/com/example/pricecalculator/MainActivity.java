@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().setTitle("원알팔");
     }
 
-    public void showGradients(View view) {
-//        startActivity(new Intent(this, ShowGradientList.class));
+    public void showIngredients(View view) {
+        startActivity(new Intent(this, ShowIngredients.class));
     }
 
     public void showMenus(View view) {
