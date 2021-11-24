@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--    리사이클러뷰 아이템에 표시될 아이템 뷰 레이아웃-->
-
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="5dp"
+    android:stretchColumns="0,1,2,3"
     >
-    <TableRow>
+    <TableRow
+        android:background="@drawable/table_row_border_style"
+        android:paddingVertical="3dp"
+        >
         <TextView
-            android:id="@+id/roll_no_tv"
+            android:id="@+id/ingredient_name"
             android:layout_width="match_parent"
             android:text="아이스 돔 뚜껑"
             android:textColor="@color/dark_brown"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:gravity="center"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_weight="1"
-            android:ems="5"
+            android:ems="4"
             android:ellipsize="end"
             android:maxLines="1"
             />
 
         <TextView
-            android:id="@+id/name_tv"
+            android:id="@+id/ingredient_weight"
             android:text="1000개"
             android:textColor="@color/dark_brown"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:gravity="center"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
@@ -38,28 +40,30 @@
             />
 
         <TextView
-            android:id="@+id/standard_tv"
+            android:id="@+id/ingredient_total_price"
             android:text="100000원"
             android:textColor="@color/dark_brown"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:gravity="center"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_weight="2"
-            android:ems="3"
+            android:ems="4"
             android:ellipsize="end"
             android:maxLines="1"
             />
 
-        <TextView android:text="100원/개"
+        <TextView
+            android:id="@+id/ingredient_price_per_unit"
+            android:text="100원/개"
             android:textColor="@color/dark_brown"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:gravity="center"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:layout_weight="2"
-            android:ems="2"
+            android:ems="4"
             android:ellipsize="end"
             android:maxLines="1"
             />
@@ -78,10 +82,10 @@
 <!--            />-->
 
         <ImageButton
-            android:layout_weight="0.6"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_width="3dp"
-            android:padding="0sp"
+            android:layout_width="30dp"
+            android:padding="5sp"
             android:id="@+id/more_iv"
             android:src="@drawable/option_icon2"
             android:scaleType="fitCenter"

@@ -3,6 +3,9 @@ package com.example.pricecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,9 +25,33 @@ public class AddIngredient extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        // toolbar 뒤로가기
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // 일단 핵심기능부터 구현하고나서 생각해보기
+//        // textwatcher
+//        TextWatcher textWatcher = new TextWatcher() {
+//            // text가 변경되기 바로 이전에 동작
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//            // text가 변경되는 동시에 동작
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//            // text가 변경된 이후에 동작
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if(editable != null && !editable.toString().equals("")) {
+//                    binding.pricePerUnit.setText(editable);
+//                }
+//            }
+//        };
 
-
+//        binding.ingredientWeight.addTextChangedListener(textWatcher);
+//        binding.ingredientTotalPrice.addTextChangedListener(textWatcher);
 
 
         ArrayAdapter unit_adapter = ArrayAdapter.createFromResource(this, R.array.unit_array, android.R.layout.simple_spinner_dropdown_item);
@@ -45,6 +72,18 @@ public class AddIngredient extends AppCompatActivity {
 
             }
         });
+    }
+
+    //toolbar의 back키 눌렀을 때 동작
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void addIngredient(View view) {
