@@ -11,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityAddIngredientBinding;
 
 
 public class AddIngredient extends AppCompatActivity {
 
     private ActivityAddIngredientBinding binding;
+    IngredientDatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class AddIngredient extends AppCompatActivity {
         binding = ActivityAddIngredientBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        helper = IngredientDatabaseHelper.getInstance(this);
 
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,5 +91,16 @@ public class AddIngredient extends AppCompatActivity {
     }
 
     public void addIngredient(View view) {
+        if(!binding.ingredientName.getText().toString().isEmpty() && !binding.ingredientWeight.getText().toString().isEmpty() && !binding.ingredientTotalPrice.getText().toString().isEmpty()){
+            double ingredient_unit_price = Double.parseDouble(binding.ingredientTotalPrice.getText().toString())/Double.parseDouble(binding.ingredientWeight.getText().toString());
+
+            helper.addIngredient(binding.ingredientName.getText().toString(),
+                    Integer.parseInt(binding.ingredientWeight.getText().toString()),
+                    binding.spUnit.getSelectedItem().toString(),
+                    Integer.parseInt(binding.ingredientTotalPrice.getText().toString()),
+                    Math.ceil(ingredient_unit_price * 100)/100.0
+                    );
+        }
+        finish();
     }
 }
