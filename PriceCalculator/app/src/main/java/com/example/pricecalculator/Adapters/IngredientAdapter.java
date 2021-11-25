@@ -1,9 +1,14 @@
 package com.example.pricecalculator.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pricecalculator.Databases.IngredientDatabase;
 import com.example.pricecalculator.Databases.IngredientTable;
+import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.R;
+import com.example.pricecalculator.UpdateIngredient;
 
 import java.util.List;
 
@@ -25,13 +32,18 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     List<IngredientTable> ingredientTableList;
     View view;
 
+    IngredientDatabaseHelper helper;
+
     public IngredientAdapter(Context context, List<IngredientTable> ingredientTableList){
         this.context = context;
         this.ingredientTableList = ingredientTableList;
+
+        helper = IngredientDatabaseHelper.getInstance(context);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView ingredient_name, ingredient_weight, ingredient_unit, ingredient_total_price, ingredient_unit_price;
+        TextView ingredient_name, ingredient_weight, ingredient_total_price, ingredient_unit_price;
+        ImageButton more_iv;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -40,6 +52,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             ingredient_weight = itemView.findViewById(R.id.ingredient_weight);
             ingredient_total_price = itemView.findViewById(R.id.ingredient_total_price);
             ingredient_unit_price = itemView.findViewById(R.id.ingredient_price_per_unit);
+
+            more_iv = itemView.findViewById(R.id.more_iv);
         }
     }
 
@@ -68,6 +82,33 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             holder.ingredient_weight.setText(ingredient_weight);
             holder.ingredient_total_price.setText(ingredient_total_price);
             holder.ingredient_unit_price.setText(ingredient_unit_price);
+
+            holder.more_iv.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    PopupMenu popupMenu = new PopupMenu(context, holder.more_iv);
+                    popupMenu.getMenuInflater().inflate(R.menu.show_ingredient_more_iv_items, popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            switch (menuItem.getItemId()){
+                                case R.id.update_id:
+                                    context.startActivity(new Intent(context, UpdateIngredient.class)
+                                    .putExtra("ingredient_table", ingredientTable));
+                                    break;
+                                case R.id.delete_id:
+                                    helper.deleteData(ingredientTable);
+                                    ingredientTableList.remove(position);
+                                    notifyDataSetChanged();
+                                    notifyItemRangeChanged(position, ingredientTableList.size());
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
         }
     }
 

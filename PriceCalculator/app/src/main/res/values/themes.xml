@@ -3,7 +3,6 @@
     <style name="Theme.PriceCalculator" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#9CC094</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:colorPrimaryDark">#7e9e77</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>

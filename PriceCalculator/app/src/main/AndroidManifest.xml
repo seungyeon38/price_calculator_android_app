@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PriceCalculator">
         <activity
+            android:name=".UpdateIngredient"
+            android:exported="true" />
+        <activity
             android:name=".AddIngredient"
             android:exported="true" />
         <activity

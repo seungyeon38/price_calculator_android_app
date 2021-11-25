@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddIngredient">
+    tools:context=".UpdateIngredient">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="10dp"
         android:orientation="vertical"
         android:padding="15sp">
 
@@ -60,8 +60,8 @@
                 android:id="@+id/ingredient_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/dark_gray"
                 android:inputType="number"
                 android:paddingLeft="15dp"
@@ -97,8 +97,8 @@
                 android:id="@+id/ingredient_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/dark_gray"
                 android:inputType="number"
                 android:paddingLeft="15dp"
@@ -108,7 +108,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center|bottom"
+                android:gravity="center"
                 android:text="원"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -144,8 +144,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
             android:background="@drawable/bottom_btn_style"
-            android:onClick="addIngredient"
-            android:text="재료 추가하기"
+            android:onClick="updateIngredient"
+            android:text="재료 정보 수정"
             android:textColor="@color/dark_gray"
             android:textSize="18dp"
             android:textStyle="bold" />

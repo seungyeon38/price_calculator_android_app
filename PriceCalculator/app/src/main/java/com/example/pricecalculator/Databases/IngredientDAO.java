@@ -1,8 +1,10 @@
 package com.example.pricecalculator.Databases;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -17,4 +19,9 @@ public interface IngredientDAO {
     @Query("SELECT * FROM ingredienttable")
     List<IngredientTable> selectAll();
 
+    @Update
+    void updateData(IngredientTable ingredientTable);
+
+    @Delete
+    void deleteData(IngredientTable ingredientTable);
 }

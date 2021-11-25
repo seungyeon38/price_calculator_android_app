@@ -22,6 +22,8 @@
         <entry key="app/src/main/res/layout/activity_show_gradient_list.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/activity_show_gradients.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_show_ingredients.xml" value="0.24929021977281604" />
+        <entry key="app/src/main/res/layout/activity_update_ingredient.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_update_ingredients.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/content_show_gradient_list.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24818840579710144" />
