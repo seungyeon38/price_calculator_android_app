@@ -3,13 +3,12 @@ package com.example.pricecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.pricecalculator.Databases.IngredientTable;
+import com.example.pricecalculator.Databases.Ingredient;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityUpdateIngredientBinding;
 
@@ -17,7 +16,7 @@ public class UpdateIngredient extends AppCompatActivity {
 
     private ActivityUpdateIngredientBinding binding;
 
-    IngredientTable ingredientTable;
+    Ingredient ingredient;
     IngredientDatabaseHelper helper;
 
     @Override
@@ -40,22 +39,22 @@ public class UpdateIngredient extends AppCompatActivity {
 
 
         if(getIntent() != null){
-            ingredientTable = (IngredientTable) getIntent().getSerializableExtra("ingredient_table");
-            binding.ingredientName.setText(ingredientTable.getIngredient_name());
-            binding.ingredientWeight.setText(Integer.toString(ingredientTable.getIngredient_weight()));
-            binding.ingredientTotalPrice.setText(Integer.toString(ingredientTable.getIngredient_total_price()));
-            binding.spUnit.setSelection(getIndex(binding.spUnit, ingredientTable.getIngredient_unit()));
+            ingredient = (Ingredient) getIntent().getSerializableExtra("ingredient_table");
+            binding.ingredientName.setText(ingredient.getIngredient_name());
+            binding.ingredientWeight.setText(Integer.toString(ingredient.getIngredient_weight()));
+            binding.ingredientTotalPrice.setText(Integer.toString(ingredient.getIngredient_total_price()));
+            binding.spUnit.setSelection(getIndex(binding.spUnit, ingredient.getIngredient_unit()));
         }
     }
 
-    //private method of your class
+    // private method of your class
+    // string에 해당하는 것의 spinner에서의 position을 return해줌
     private int getIndex(Spinner spinner, String myString){
         for (int i=0;i<spinner.getCount();i++){
             if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
                 return i;
             }
         }
-
         return 0;
     }
 
@@ -75,7 +74,7 @@ public class UpdateIngredient extends AppCompatActivity {
         if(!binding.ingredientName.getText().toString().isEmpty() && !(binding.spUnit.getSelectedItem() == null) && !binding.ingredientWeight.getText().toString().isEmpty() && !binding.ingredientTotalPrice.getText().toString().isEmpty()){
             double ingredient_unit_price = Double.parseDouble(binding.ingredientTotalPrice.getText().toString())/Double.parseDouble(binding.ingredientWeight.getText().toString());
 
-            helper.updateData(ingredientTable,
+            helper.updateIngredientData(ingredient,
                     binding.ingredientName.getText().toString(),
                     Integer.parseInt(binding.ingredientWeight.getText().toString()),
                     binding.spUnit.getSelectedItem().toString(),

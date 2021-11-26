@@ -1,41 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ShowIngredients">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ShowMenus">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--        <Button-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_gravity="right"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:background="@drawable/main_btn_style"-->
-<!--            android:onClick="addGradient"-->
-<!--            android:text="재료 추가"-->
-<!--            android:textColor="#616161"-->
-<!--            android:textSize="18dp"-->
-<!--            android:textStyle="bold" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <ImageButton
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:width="50dp"
+                android:gravity="center"
+                android:text="원가율"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/cost_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/dark_gray"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="%"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:onClick="applyCostPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="6dp"
+                android:text="원가율 변경"
+                android:textSize="16dp"
+                android:background="@drawable/bottom_btn_style"/>
+        </LinearLayout>
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_35"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
             android:layout_gravity="right"
             android:layout_marginRight="5dp"
-            android:onClick="addIngredient"
-
-            />
+            android:background="@android:color/transparent"
+            android:onClick="addMenu"
+            android:drawableRight="@drawable/ic_baseline_add_24"
+            android:text="메뉴 추가"
+            android:textSize="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,10 +80,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f0d8b6"
-                android:stretchColumns="0,1,2,3">
-                <TableRow
-                    android:background="@drawable/table_header_border_style"
-                    >
+                android:stretchColumns="0,1,2">
+
+                <TableRow android:background="@drawable/table_header_border_style">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -60,25 +93,10 @@
                         android:maxLines="1"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:text="재료"
+                        android:text="메뉴"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:ems="3"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="무게/수량"
-                        android:textColor="@color/dark_brown"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_weight="2"
@@ -88,11 +106,10 @@
                         android:maxLines="1"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:text="가격"
+                        android:text="원가"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_weight="2"
@@ -102,15 +119,14 @@
                         android:maxLines="1"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:text="단위당 가격"
+                        android:text="추천 판매가"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_weight="1"
                         android:layout_width="30dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:ems="1"
                         android:gravity="center"
@@ -119,13 +135,12 @@
                         android:paddingBottom="5dp"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </TableRow>
             </TableLayout>
             <!--해당 액티비티에 리사이클러뷰를 추가-->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_ingredient_table"
+                android:id="@+id/rv_menu_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f5f0e9" />

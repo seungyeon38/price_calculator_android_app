@@ -28,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showMenus(View view) {
+        startActivity(new Intent(this, ShowMenus.class));
     }
 
     public void addMenu(View view) {
+        startActivity(new Intent(this, AddMenu.class));
     }
 }

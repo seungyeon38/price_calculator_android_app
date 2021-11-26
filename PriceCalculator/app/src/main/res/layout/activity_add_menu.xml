@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:width="50dp"
+                android:gravity="center"
+                android:text="메뉴"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/cost_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/dark_gray"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:onClick="addMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="3dp"
+                android:text="메뉴 추가"
+                android:textSize="16dp"
+                android:background="@drawable/bottom_btn_style"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent"
+            android:onClick="addMenuIngredient"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_add_35" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f0d8b6"
+                android:stretchColumns="0,1">
+
+                <TableRow android:background="@drawable/table_header_border_style">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:ems="6"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="재료"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:ems="6"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="무게/수량"
+                        android:textColor="@color/dark_brown"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_weight="2"-->
+                    <!--                        android:ellipsize="end"-->
+                    <!--                        android:ems="4"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:maxLines="1"-->
+                    <!--                        android:paddingTop="5dp"-->
+                    <!--                        android:paddingBottom="5dp"-->
+                    <!--                        android:text="가격"-->
+                    <!--                        android:textColor="@color/dark_brown"-->
+                    <!--                        android:textSize="16dp"-->
+                    <!--                        android:textStyle="bold"-->
+                    <!--                        />-->
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:ems="1"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+            <!--해당 액티비티에 리사이클러뷰를 추가-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_menu_ingredient_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f0e9" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--tools:context=".ShowMenus">-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginHorizontal="50dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:width="90dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="원가율"-->
+<!--            android:textSize="18dp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/cost_percentage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:backgroundTint="@color/dark_gray"-->
+<!--            android:inputType="number"-->
+<!--            android:paddingLeft="15dp"-->
+<!--            android:textColor="@color/black" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"-->
+<!--            android:text="%"-->
+<!--            android:textSize="20dp"-->
+<!--            android:textStyle="bold" />-->
+<!--    </LinearLayout>-->
+
+<!--    <ImageButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ic_baseline_add_24"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:padding="5dp"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:onClick="addMenu"-->
+<!--        />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="5dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TableLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#f0d8b6"-->
+<!--            android:stretchColumns="0,1,2">-->
+<!--            <TableRow-->
+<!--                android:background="@drawable/table_header_border_style"-->
+<!--                >-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:ems="4"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="메뉴"-->
+<!--                    android:textColor="@color/dark_brown"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:ems="4"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="원가"-->
+<!--                    android:textColor="@color/dark_brown"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:ems="4"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:text="추천 판매가"-->
+<!--                    android:textColor="@color/dark_brown"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:ems="1"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
+<!--            </TableRow>-->
+<!--        </TableLayout>-->
+<!--        &lt;!&ndash;해당 액티비티에 리사이클러뷰를 추가&ndash;&gt;-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_menu_table"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#f5f0e9" />-->
+<!--    </LinearLayout>-->
+<!--</LinearLayout>-->
+<!--</RelativeLayout>-->

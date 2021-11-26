@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="0,1">
+    <TableRow
+        android:background="@drawable/table_row_border_style"
+        android:paddingVertical="3dp"
+        >
+        <TextView
+            android:id="@+id/menu_ingredient_name"
+            android:layout_width="match_parent"
+            android:text="원두"
+            android:textColor="@color/dark_brown"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_weight="1"
+            android:ems="4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:id="@+id/menu_ingredient_weight"
+            android:text="20g"
+            android:textColor="@color/dark_brown"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_weight="2"
+            android:ems="4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/menu_selling_price"-->
+<!--            android:text="600원"-->
+<!--            android:textColor="@color/dark_brown"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="15dp"-->
+<!--            android:gravity="center"-->
+<!--            android:paddingTop="5dp"-->
+<!--            android:paddingBottom="5dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:ems="4"-->
+<!--            android:ellipsize="end"-->
+<!--            android:maxLines="1"-->
+<!--            />-->
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:padding="1sp"
+            android:id="@+id/delete_menu_ingredient"
+            android:src="@drawable/ic_baseline_delete_outline_24"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            />
+    </TableRow>
+
+</TableLayout>

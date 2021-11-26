@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 // Entity means table
 @Entity
-public class IngredientTable implements Serializable {
+public class Ingredient implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int ingredient_id;

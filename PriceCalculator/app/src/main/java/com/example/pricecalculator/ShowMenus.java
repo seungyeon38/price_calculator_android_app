@@ -8,38 +8,37 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.pricecalculator.Adapters.IngredientAdapter;
-import com.example.pricecalculator.Databases.Ingredient;
-import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
-import com.example.pricecalculator.databinding.ActivityShowIngredientsBinding;
+import com.example.pricecalculator.Adapters.MenuAdapter;
+import com.example.pricecalculator.Databases.Menu;
+import com.example.pricecalculator.Helper.MenuDatabaseHelper;
+import com.example.pricecalculator.databinding.ActivityShowMenusBinding;
 
 import java.util.List;
 
-public class ShowIngredients extends AppCompatActivity {
+public class ShowMenus extends AppCompatActivity {
 
-    private ActivityShowIngredientsBinding binding;
+    private ActivityShowMenusBinding binding;
 
-//    RecyclerView recyclerView;
-    IngredientAdapter ingredientAdapter;
-    IngredientDatabaseHelper helper;
+    MenuAdapter menuAdapter;
+    MenuDatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityShowIngredientsBinding.inflate(getLayoutInflater());
+        binding = ActivityShowMenusBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        helper = IngredientDatabaseHelper.getInstance(this);
-        helper.getAllIngredientsData();
+        helper = MenuDatabaseHelper.getInstance(this);
+        helper.getAllMenusData();
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void setRecyclerView(List<Ingredient> ingredientList){
-        binding.rvIngredientTable.setLayoutManager(new LinearLayoutManager(this));
-        ingredientAdapter = new IngredientAdapter(this, ingredientList);
-        binding.rvIngredientTable.setAdapter(ingredientAdapter);
+    public void setRecyclerView(List<Menu> menuList){
+        binding.rvMenuTable.setLayoutManager(new LinearLayoutManager(this));
+        menuAdapter = new MenuAdapter(this, menuList);
+        binding.rvMenuTable.setAdapter(menuAdapter);
     }
 
     //toolbar의 back키 눌렀을 때 동작
@@ -57,12 +56,16 @@ public class ShowIngredients extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        helper.getAllIngredientsData();
+        helper.getAllMenusData();
 //        helper.getAllIngredientsData();
 //        reloadDATABASE(); // addIngredient를 하고나서 돌아올 때 동작
     }
 
-    public void addIngredient(View view) {
-        startActivity(new Intent(this, AddIngredient.class));
+
+    public void addMenu(View view) {
+        startActivity(new Intent(this, AddMenu.class));
+    }
+
+    public void applyCostPercentage(View view) {
     }
 }

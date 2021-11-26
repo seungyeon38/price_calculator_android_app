@@ -63,19 +63,19 @@ public class AddIngredient extends AppCompatActivity {
         unit_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spUnit.setAdapter(unit_adapter);
 
-        binding.spUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            // 이 오버라이드 메소드에서 position 몇 번째 값이 클릭됐는지 알 수 있다.
-            // getItemAtPosition(position)를 통해서 해당 값을 받아올 수 있다.
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long i) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        binding.spUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            // 이 오버라이드 메소드에서 position 몇 번째 값이 클릭됐는지 알 수 있다.
+//            // getItemAtPosition(position)를 통해서 해당 값을 받아올 수 있다.
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long i) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
     }
 
     //toolbar의 back키 눌렀을 때 동작
