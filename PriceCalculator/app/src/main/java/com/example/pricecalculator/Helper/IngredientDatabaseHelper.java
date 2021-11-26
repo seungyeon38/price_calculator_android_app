@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.pricecalculator.Databases.DatabaseClient;
-import com.example.pricecalculator.Databases.Ingredient;
+import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.ShowIngredients;
 
 import java.util.List;
@@ -24,26 +24,26 @@ public class IngredientDatabaseHelper {
 
     // Insert Ingredient Data
     public void addIngredient(String ingredient_name, int ingredient_weight, String ingredient_unit, int ingredient_total_price, double ingredient_unit_price){
-        class NewIngredient extends AsyncTask<Void, Void, Ingredient>{
+        class NewIngredient extends AsyncTask<Void, Void, IngredientTable>{
             @Override
-            protected Ingredient doInBackground(Void... voids) {
-                Ingredient ingredient = new Ingredient();
-                ingredient.setIngredient_name(ingredient_name);
-                ingredient.setIngredient_weight(ingredient_weight);
-                ingredient.setIngredient_unit(ingredient_unit);
-                ingredient.setIngredient_total_price(ingredient_total_price);
-                ingredient.setIngredient_unit_price(ingredient_unit_price);
+            protected IngredientTable doInBackground(Void... voids) {
+                IngredientTable ingredientTable = new IngredientTable();
+                ingredientTable.setIngredient_name(ingredient_name);
+                ingredientTable.setIngredient_weight(ingredient_weight);
+                ingredientTable.setIngredient_unit(ingredient_unit);
+                ingredientTable.setIngredient_total_price(ingredient_total_price);
+                ingredientTable.setIngredient_unit_price(ingredient_unit_price);
 
                 DatabaseClient.getInstance(context)
                         .getIngredientDatabase()
                         .ingredientDAO()
-                        .insertData(ingredient);
+                        .insertData(ingredientTable);
 
-                return ingredient;
+                return ingredientTable;
             }
 
             @Override
-            protected void onPostExecute(Ingredient ingredientTable) {
+            protected void onPostExecute(IngredientTable ingredientTable) {
                 super.onPostExecute(ingredientTable);
                 if(ingredientTable != null){
                     Toast.makeText(context, ingredientTable.getIngredient_name() + "가 추가되었습니다.", Toast.LENGTH_SHORT).show();
@@ -57,10 +57,10 @@ public class IngredientDatabaseHelper {
 
     // Show all data from ingredientTable
     public void getAllIngredientsData(){
-        class AllIngredients extends AsyncTask<Void, Void, List<Ingredient>>{
+        class AllIngredients extends AsyncTask<Void, Void, List<IngredientTable>>{
             @Override
-            protected List<Ingredient> doInBackground(Void... voids) {
-                List<Ingredient> list = DatabaseClient.getInstance(context)
+            protected List<IngredientTable> doInBackground(Void... voids) {
+                List<IngredientTable> list = DatabaseClient.getInstance(context)
                         .getIngredientDatabase()
                         .ingredientDAO()
                         .selectAll();
@@ -69,7 +69,7 @@ public class IngredientDatabaseHelper {
             }
 
             @Override
-            protected void onPostExecute(List<Ingredient> ingredientTables) {
+            protected void onPostExecute(List<IngredientTable> ingredientTables) {
                 super.onPostExecute(ingredientTables);
                 if(ingredientTables != null && ingredientTables.size() > 0){
                     ((ShowIngredients)context).setRecyclerView(ingredientTables);
@@ -82,10 +82,10 @@ public class IngredientDatabaseHelper {
     }
 
     // Update data
-    public void updateIngredientData(Ingredient table, String ingredient_name, int ingredient_weight, String ingredient_unit, int ingredient_total_price, double ingredient_unit_price){
-        class UpdateIngredientData extends AsyncTask<Void, Void, Ingredient>{
+    public void updateIngredientData(IngredientTable table, String ingredient_name, int ingredient_weight, String ingredient_unit, int ingredient_total_price, double ingredient_unit_price){
+        class UpdateIngredientData extends AsyncTask<Void, Void, IngredientTable>{
             @Override
-            protected Ingredient doInBackground(Void... voids) {
+            protected IngredientTable doInBackground(Void... voids) {
                 table.setIngredient_name(ingredient_name);
                 table.setIngredient_weight(ingredient_weight);
                 table.setIngredient_unit(ingredient_unit);
@@ -101,7 +101,7 @@ public class IngredientDatabaseHelper {
             }
 
             @Override
-            protected void onPostExecute(Ingredient ingredientTable) {
+            protected void onPostExecute(IngredientTable ingredientTable) {
                 super.onPostExecute(ingredientTable);
                 if(table != null){
                     Toast.makeText(context, table.getIngredient_name() + "의 정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
@@ -113,14 +113,14 @@ public class IngredientDatabaseHelper {
         updateIngredientData.execute();
     }
     // Delete data
-    public void deleteIngredientData(Ingredient ingredient){
+    public void deleteIngredientData(IngredientTable ingredientTable){
         class DeleteIngredientData extends AsyncTask<Void, Void, Void>{
             @Override
             protected Void doInBackground(Void... voids) {
                 DatabaseClient.getInstance(context)
                         .getIngredientDatabase()
                         .ingredientDAO()
-                        .deleteData(ingredient);
+                        .deleteData(ingredientTable);
 
                 return null;
             }

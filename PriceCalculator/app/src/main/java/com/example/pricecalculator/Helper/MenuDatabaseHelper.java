@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.pricecalculator.Databases.DatabaseClient;
-import com.example.pricecalculator.Databases.Menu;
+import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.ShowMenus;
 
 import java.util.List;
@@ -25,24 +25,24 @@ public class MenuDatabaseHelper {
 
     // Insert Ingredient Data
     public void addMenu(String menu_name, int menu_price){
-        class NewMenu extends AsyncTask<Void, Void, Menu>{
+        class NewMenu extends AsyncTask<Void, Void, MenuTable>{
             @Override
-            protected Menu doInBackground(Void... voids) {
-                Menu menu = new Menu();
-                menu.setMenu_name(menu_name);
-                menu.setMenu_price(menu_price);
+            protected MenuTable doInBackground(Void... voids) {
+                MenuTable menuTable = new MenuTable();
+                menuTable.setMenu_name(menu_name);
+                menuTable.setMenu_price(menu_price);
 //                menuTable.setMenu_selling_price(menu_selling_price);
 
                 DatabaseClient.getInstance(context)
                         .getMenuDatabase()
                         .menuDAO()
-                        .insertData(menu);
+                        .insertData(menuTable);
 
-                return menu;
+                return menuTable;
             }
 
             @Override
-            protected void onPostExecute(Menu menuTable) {
+            protected void onPostExecute(MenuTable menuTable) {
                 super.onPostExecute(menuTable);
 
                 if(menuTable != null){
@@ -57,10 +57,10 @@ public class MenuDatabaseHelper {
 
     // Show all data from ingredientTable
     public void getAllMenusData(){
-        class AllMenus extends AsyncTask<Void, Void, List<Menu>>{
+        class AllMenus extends AsyncTask<Void, Void, List<MenuTable>>{
             @Override
-            protected List<Menu> doInBackground(Void... voids) {
-                List<Menu> list = DatabaseClient.getInstance(context)
+            protected List<MenuTable> doInBackground(Void... voids) {
+                List<MenuTable> list = DatabaseClient.getInstance(context)
                         .getMenuDatabase()
                         .menuDAO()
                         .selectAll();
@@ -69,7 +69,7 @@ public class MenuDatabaseHelper {
             }
 
             @Override
-            protected void onPostExecute(List<Menu> menuTables) {
+            protected void onPostExecute(List<MenuTable> menuTables) {
                 super.onPostExecute(menuTables);
                 if(menuTables != null && menuTables.size() > 0){
                     ((ShowMenus)context).setRecyclerView(menuTables);
@@ -81,10 +81,10 @@ public class MenuDatabaseHelper {
     }
 
     // Update data
-    public void updateMenuData(Menu table, String menu_name, int menu_price){
-        class UpdateMenuData extends AsyncTask<Void, Void, Menu>{
+    public void updateMenuData(MenuTable table, String menu_name, int menu_price){
+        class UpdateMenuData extends AsyncTask<Void, Void, MenuTable>{
             @Override
-            protected Menu doInBackground(Void... voids) {
+            protected MenuTable doInBackground(Void... voids) {
                 table.setMenu_name(menu_name);
                 table.setMenu_price(menu_price);
 //                table.setMenu_selling_price(menu_selling_price);
@@ -98,7 +98,7 @@ public class MenuDatabaseHelper {
             }
 
             @Override
-            protected void onPostExecute(Menu menuTable) {
+            protected void onPostExecute(MenuTable menuTable) {
                 super.onPostExecute(menuTable);
                 if(table != null){
                     Toast.makeText(context, table.getMenu_name() + "의 정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
@@ -110,14 +110,14 @@ public class MenuDatabaseHelper {
     }
 
     // Delete data
-    public void deleteMenuData(Menu menu){
+    public void deleteMenuData(MenuTable menuTable){
         class DeleteMenuData extends AsyncTask<Void, Void, Void> {
             @Override
             protected Void doInBackground(Void... voids) {
                 DatabaseClient.getInstance(context)
                         .getMenuDatabase()
                         .menuDAO()
-                        .deleteData(menu);
+                        .deleteData(menuTable);
 
                 return null;
             }

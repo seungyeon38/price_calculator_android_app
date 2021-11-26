@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.pricecalculator.Databases.Ingredient;
+import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityUpdateIngredientBinding;
 
@@ -16,7 +16,7 @@ public class UpdateIngredient extends AppCompatActivity {
 
     private ActivityUpdateIngredientBinding binding;
 
-    Ingredient ingredient;
+    IngredientTable ingredientTable;
     IngredientDatabaseHelper helper;
 
     @Override
@@ -39,11 +39,11 @@ public class UpdateIngredient extends AppCompatActivity {
 
 
         if(getIntent() != null){
-            ingredient = (Ingredient) getIntent().getSerializableExtra("ingredient_table");
-            binding.ingredientName.setText(ingredient.getIngredient_name());
-            binding.ingredientWeight.setText(Integer.toString(ingredient.getIngredient_weight()));
-            binding.ingredientTotalPrice.setText(Integer.toString(ingredient.getIngredient_total_price()));
-            binding.spUnit.setSelection(getIndex(binding.spUnit, ingredient.getIngredient_unit()));
+            ingredientTable = (IngredientTable) getIntent().getSerializableExtra("ingredient_table");
+            binding.ingredientName.setText(ingredientTable.getIngredient_name());
+            binding.ingredientWeight.setText(Integer.toString(ingredientTable.getIngredient_weight()));
+            binding.ingredientTotalPrice.setText(Integer.toString(ingredientTable.getIngredient_total_price()));
+            binding.spUnit.setSelection(getIndex(binding.spUnit, ingredientTable.getIngredient_unit()));
         }
     }
 
@@ -74,7 +74,7 @@ public class UpdateIngredient extends AppCompatActivity {
         if(!binding.ingredientName.getText().toString().isEmpty() && !(binding.spUnit.getSelectedItem() == null) && !binding.ingredientWeight.getText().toString().isEmpty() && !binding.ingredientTotalPrice.getText().toString().isEmpty()){
             double ingredient_unit_price = Double.parseDouble(binding.ingredientTotalPrice.getText().toString())/Double.parseDouble(binding.ingredientWeight.getText().toString());
 
-            helper.updateIngredientData(ingredient,
+            helper.updateIngredientData(ingredientTable,
                     binding.ingredientName.getText().toString(),
                     Integer.parseInt(binding.ingredientWeight.getText().toString()),
                     binding.spUnit.getSelectedItem().toString(),

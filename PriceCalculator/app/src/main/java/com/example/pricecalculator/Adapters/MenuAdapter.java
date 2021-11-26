@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pricecalculator.Databases.Menu;
+import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.Helper.MenuDatabaseHelper;
 import com.example.pricecalculator.R;
 import com.example.pricecalculator.UpdateMenu;
@@ -22,14 +22,14 @@ import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
-    List<Menu> menuList;
+    List<MenuTable> menuTableList;
     View view;
 
     MenuDatabaseHelper helper;
 
-    public MenuAdapter(Context context, List<Menu> menuList) {
+    public MenuAdapter(Context context, List<MenuTable> menuTableList) {
         this.context = context;
-        this.menuList = menuList;
+        this.menuTableList = menuTableList;
 
         helper = MenuDatabaseHelper.getInstance(context);
     }
@@ -59,13 +59,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(menuList != null && menuList.size() > 0){
-            Menu menu = menuList.get(position);
+        if(menuTableList != null && menuTableList.size() > 0){
+            MenuTable menuTable = menuTableList.get(position);
 
-            String menu_price = String.valueOf(menu.getMenu_price()) + "원";
+            String menu_price = String.valueOf(menuTable.getMenu_price()) + "원";
 //            String menu_selling_price = String.valueOf(menuTable.getMenu_selling_price()) + "원";
 
-            holder.menu_name.setText(menu.getMenu_name());
+            holder.menu_name.setText(menuTable.getMenu_name());
             holder.menu_price.setText(menu_price);
 //            holder.menu_selling_price.setText(menu_selling_price);
 
@@ -80,7 +80,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                             switch (menuItem.getItemId()){
                                 case R.id.update_id:
                                     context.startActivity(new Intent(context, UpdateMenu.class)
-                                            .putExtra("menu_table", menu));
+                                            .putExtra("menu_table", menuTable));
                                     break;
                                 case R.id.delete_id:
 
@@ -97,6 +97,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return menuList.size();
+        return menuTableList.size();
     }
 }

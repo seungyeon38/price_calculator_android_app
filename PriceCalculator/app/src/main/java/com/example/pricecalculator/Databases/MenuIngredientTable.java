@@ -1,25 +1,21 @@
 package com.example.pricecalculator.Databases;
 
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Junction;
-import androidx.room.Relation;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 @Entity(primaryKeys = {"menu_id", "ingredient_id"},
         foreignKeys = {
-        @ForeignKey(entity = Menu.class,
+        @ForeignKey(entity = MenuTable.class,
                     parentColumns = "menu_id",
                     childColumns = "menu_id"),
-        @ForeignKey(entity = Ingredient.class,
+        @ForeignKey(entity = IngredientTable.class,
                     parentColumns = "ingredient_id",
                     childColumns = "ingredient_id")})
-public class MenuIngredient implements Serializable {
+public class MenuIngredientTable implements Serializable {
     @ColumnInfo(name = "menu_id")
     private int menu_id;
 

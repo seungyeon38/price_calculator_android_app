@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pricecalculator.Databases.Ingredient;
+import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.R;
 import com.example.pricecalculator.UpdateIngredient;
@@ -24,14 +24,14 @@ import java.util.List;
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder>{
 
     Context context;
-    List<Ingredient> ingredientList;
+    List<IngredientTable> ingredientTableList;
     View view;
 
     IngredientDatabaseHelper helper;
 
-    public IngredientAdapter(Context context, List<Ingredient> ingredientList){
+    public IngredientAdapter(Context context, List<IngredientTable> ingredientTableList){
         this.context = context;
-        this.ingredientList = ingredientList;
+        this.ingredientTableList = ingredientTableList;
 
         helper = IngredientDatabaseHelper.getInstance(context);
     }
@@ -77,18 +77,18 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     // 스크롤을 해서 데이터 바인딩이 새롭게 필요할 때 마다 호출된다.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(ingredientList != null && ingredientList.size() > 0){
-            Ingredient ingredient = ingredientList.get(position);
-            String ingredient_weight = String.valueOf(ingredient.getIngredient_weight()) + String.valueOf(ingredient.getIngredient_unit());
-            String ingredient_total_price = String.valueOf(ingredient.getIngredient_total_price()) + "원";
+        if(ingredientTableList != null && ingredientTableList.size() > 0){
+            IngredientTable ingredientTable = ingredientTableList.get(position);
+            String ingredient_weight = String.valueOf(ingredientTable.getIngredient_weight()) + String.valueOf(ingredientTable.getIngredient_unit());
+            String ingredient_total_price = String.valueOf(ingredientTable.getIngredient_total_price()) + "원";
             String ingredient_unit_price;
 
-            if(ingredient.getIngredient_unit_price() % 1 == 0){
-                ingredient_unit_price = String.valueOf((int) ingredient.getIngredient_unit_price()) + "원/" + String.valueOf(ingredient.getIngredient_unit());
+            if(ingredientTable.getIngredient_unit_price() % 1 == 0){
+                ingredient_unit_price = String.valueOf((int) ingredientTable.getIngredient_unit_price()) + "원/" + String.valueOf(ingredientTable.getIngredient_unit());
             }else{
-                ingredient_unit_price = String.valueOf(ingredient.getIngredient_unit_price()) + "원/" + String.valueOf(ingredient.getIngredient_unit());
+                ingredient_unit_price = String.valueOf(ingredientTable.getIngredient_unit_price()) + "원/" + String.valueOf(ingredientTable.getIngredient_unit());
             }
-            holder.ingredient_name.setText(String.valueOf(ingredient.getIngredient_name()));
+            holder.ingredient_name.setText(String.valueOf(ingredientTable.getIngredient_name()));
             holder.ingredient_weight.setText(ingredient_weight);
             holder.ingredient_total_price.setText(ingredient_total_price);
             holder.ingredient_unit_price.setText(ingredient_unit_price);
@@ -104,13 +104,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
                             switch (menuItem.getItemId()){
                                 case R.id.update_id:
                                     context.startActivity(new Intent(context, UpdateIngredient.class)
-                                    .putExtra("ingredient_table", ingredient));
+                                    .putExtra("ingredient_table", ingredientTable));
                                     break;
                                 case R.id.delete_id:
-                                    helper.deleteIngredientData(ingredient);
-                                    ingredientList.remove(position);
+                                    helper.deleteIngredientData(ingredientTable);
+                                    ingredientTableList.remove(position);
                                     notifyDataSetChanged();
-                                    notifyItemRangeChanged(position, ingredientList.size());
+                                    notifyItemRangeChanged(position, ingredientTableList.size());
                                     break;
                             }
                             return false;
@@ -124,6 +124,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return ingredientList.size();
+        return ingredientTableList.size();
     }
 }

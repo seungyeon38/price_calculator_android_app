@@ -8,11 +8,11 @@ import java.util.List;
 
 public class MenuWithIngredients {
     @Embedded
-    public Menu menu;
+    public MenuTable menuTable;
     @Relation(
             parentColumn = "menu_id",
             entityColumn = "ingredient_id",
-            associateBy = @Junction(MenuIngredient.class)
+            associateBy = @Junction(MenuIngredientTable.class)
     )
-    public List<Ingredient> ingredientList;
+    public List<IngredientTable> ingredientTableList;
 }

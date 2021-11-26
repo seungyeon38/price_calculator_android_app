@@ -13,15 +13,15 @@ public interface IngredientDAO {
 
     // For inserting ingredient data
     @Insert
-    void insertData(Ingredient ingredient);
+    void insertData(IngredientTable ingredientTable);
 
     // For getting ingredient data
-    @Query("SELECT * FROM Ingredient")
-    List<Ingredient> selectAll();
+    @Query("SELECT * FROM IngredientTable")
+    List<IngredientTable> selectAll();
 
     @Update
-    void updateData(Ingredient ingredient);
+    void updateData(IngredientTable ingredientTable);
 
     @Delete
-    void deleteData(Ingredient ingredient);
+    void deleteData(IngredientTable ingredientTable);
 }

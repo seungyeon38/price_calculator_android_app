@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.pricecalculator.Adapters.IngredientAdapter;
-import com.example.pricecalculator.Databases.Ingredient;
+import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityShowIngredientsBinding;
 
@@ -36,9 +36,9 @@ public class ShowIngredients extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void setRecyclerView(List<Ingredient> ingredientList){
+    public void setRecyclerView(List<IngredientTable> ingredientTableList){
         binding.rvIngredientTable.setLayoutManager(new LinearLayoutManager(this));
-        ingredientAdapter = new IngredientAdapter(this, ingredientList);
+        ingredientAdapter = new IngredientAdapter(this, ingredientTableList);
         binding.rvIngredientTable.setAdapter(ingredientAdapter);
     }
 

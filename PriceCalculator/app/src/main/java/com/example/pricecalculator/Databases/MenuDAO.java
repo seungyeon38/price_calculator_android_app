@@ -13,15 +13,15 @@ public interface MenuDAO {
     // 필요한 query문 쓰면 됨
 
     @Insert
-    void insertData(Menu menu);
+    void insertData(MenuTable menuTable);
 
     @Update
-    void updateData(Menu menu);
+    void updateData(MenuTable menuTable);
 
     @Delete
-    void deleteData(Menu menu);
+    void deleteData(MenuTable menuTable);
 
-    @Query("SELECT * FROM Menu")
-    List<Menu> selectAll();
+    @Query("SELECT * FROM MenuTable")
+    List<MenuTable> selectAll();
 
 }

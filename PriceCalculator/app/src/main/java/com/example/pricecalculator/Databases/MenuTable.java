@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity
-public class Menu implements Serializable {
+public class MenuTable implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int menu_id;

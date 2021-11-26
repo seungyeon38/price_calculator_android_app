@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.pricecalculator.Adapters.MenuAdapter;
-import com.example.pricecalculator.Databases.Menu;
+import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.Helper.MenuDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityShowMenusBinding;
 
@@ -35,9 +35,9 @@ public class ShowMenus extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void setRecyclerView(List<Menu> menuList){
+    public void setRecyclerView(List<MenuTable> menuTableList){
         binding.rvMenuTable.setLayoutManager(new LinearLayoutManager(this));
-        menuAdapter = new MenuAdapter(this, menuList);
+        menuAdapter = new MenuAdapter(this, menuTableList);
         binding.rvMenuTable.setAdapter(menuAdapter);
     }
 
