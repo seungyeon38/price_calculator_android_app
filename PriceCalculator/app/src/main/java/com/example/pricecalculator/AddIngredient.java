@@ -18,6 +18,7 @@ import com.example.pricecalculator.databinding.ActivityAddIngredientBinding;
 public class AddIngredient extends AppCompatActivity {
 
     private ActivityAddIngredientBinding binding;
+
     IngredientDatabaseHelper helper;
 
     @Override
@@ -31,6 +32,7 @@ public class AddIngredient extends AppCompatActivity {
 
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         // 일단 핵심기능부터 구현하고나서 생각해보기
 //        // textwatcher

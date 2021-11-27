@@ -73,7 +73,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                     PopupMenu popupMenu = new PopupMenu(context, holder.more_iv);
-                    popupMenu.getMenuInflater().inflate(R.menu.show_ingredient_more_iv_items, popupMenu.getMenu());
+                    popupMenu.getMenuInflater().inflate(R.menu.dropdown_update_delete, popupMenu.getMenu());
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {

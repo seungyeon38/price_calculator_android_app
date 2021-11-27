@@ -9,6 +9,7 @@ import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.ShowIngredients;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class IngredientDatabaseHelper {
 
@@ -56,7 +57,7 @@ public class IngredientDatabaseHelper {
     }
 
     // Show all data from ingredientTable
-    public void getAllIngredientsData(){
+    public void showAllIngredientsData(){
         class AllIngredients extends AsyncTask<Void, Void, List<IngredientTable>>{
             @Override
             protected List<IngredientTable> doInBackground(Void... voids) {
@@ -79,6 +80,23 @@ public class IngredientDatabaseHelper {
 
         AllIngredients allIngredients = new AllIngredients();
         allIngredients.execute();
+    }
+
+    public List<IngredientTable> getAllIngredientsData() throws ExecutionException, InterruptedException {
+        class AllIngredients extends AsyncTask<Void, Void, List<IngredientTable>> {
+            @Override
+            protected List<IngredientTable> doInBackground(Void... voids) {
+                List<IngredientTable> list = DatabaseClient.getInstance(context)
+                        .getIngredientDatabase()
+                        .ingredientDAO()
+                        .selectAll();
+
+                return list;
+            }
+        }
+        AllIngredients allIngredients = new AllIngredients();
+
+        return allIngredients.execute().get();
     }
 
     // Update data

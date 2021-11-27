@@ -56,7 +56,7 @@ public class MenuDatabaseHelper {
     }
 
     // Show all data from ingredientTable
-    public void getAllMenusData(){
+    public void showAllMenusData(){
         class AllMenus extends AsyncTask<Void, Void, List<MenuTable>>{
             @Override
             protected List<MenuTable> doInBackground(Void... voids) {

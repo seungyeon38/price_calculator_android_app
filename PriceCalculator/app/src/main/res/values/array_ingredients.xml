@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ingredients">
+        <item>원두1</item>
+        <item>원두2</item>
+        <item>원두3</item>
+        <item>원두4</item>
+        <item>원두5</item>
+        <item>원두6</item>
+    </string-array>
+</resources>

@@ -30,7 +30,7 @@ public class ShowMenus extends AppCompatActivity {
         setContentView(view);
 
         helper = MenuDatabaseHelper.getInstance(this);
-        helper.getAllMenusData();
+        helper.showAllMenusData();
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -56,7 +56,7 @@ public class ShowMenus extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        helper.getAllMenusData();
+        helper.showAllMenusData();
 //        helper.getAllIngredientsData();
 //        reloadDATABASE(); // addIngredient를 하고나서 돌아올 때 동작
     }

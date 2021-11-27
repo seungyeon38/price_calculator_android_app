@@ -31,7 +31,7 @@ public class ShowIngredients extends AppCompatActivity {
         setContentView(view);
 
         helper = IngredientDatabaseHelper.getInstance(this);
-        helper.getAllIngredientsData();
+        helper.showAllIngredientsData();
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -57,7 +57,7 @@ public class ShowIngredients extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        helper.getAllIngredientsData();
+        helper.showAllIngredientsData();
 //        helper.getAllIngredientsData();
 //        reloadDATABASE(); // addIngredient를 하고나서 돌아올 때 동작
     }

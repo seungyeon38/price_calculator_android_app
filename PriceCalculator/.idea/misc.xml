@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Library/Android/sdk/platforms/android-31-2/data/res/layout/simple_spinner_dropdown_item.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/drawable/basic_btn_style.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/drawable/bottom_btn_style.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/button_style.xml" value="0.23796296296296296" />
         <entry key="app/src/main/res/drawable/edittext_style.xml" value="0.16510416666666666" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/layout/activity_update_ingredients.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_update_menu.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/content_show_gradient_list.xml" value="0.24818840579710144" />
+        <entry key="app/src/main/res/layout/dialog_add_menu_ingredient.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/rv_gradient_table_layout.xml" value="0.24818840579710144" />
@@ -40,6 +42,7 @@
         <entry key="app/src/main/res/layout/sp_item.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/show_ingredient_more_iv_items.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/menu/sp_ingredients.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16510416666666666" />
       </map>
