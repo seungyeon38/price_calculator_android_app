@@ -74,6 +74,7 @@ public class AddIngredient extends AppCompatActivity {
 //            }
 //
 //            @Override
+//            @Override
 //            public void onNothingSelected(AdapterView<?> adapterView) {
 //
 //            }
@@ -100,7 +101,7 @@ public class AddIngredient extends AppCompatActivity {
                     Integer.parseInt(binding.ingredientWeight.getText().toString()),
                     binding.spUnit.getSelectedItem().toString(),
                     Integer.parseInt(binding.ingredientTotalPrice.getText().toString()),
-                    Math.ceil(ingredient_unit_price * 100)/100.0
+                    ingredient_unit_price
                     );
         }
         finish();

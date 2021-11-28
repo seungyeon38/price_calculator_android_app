@@ -37,7 +37,9 @@ tools:context=".ShowMenus">
                 android:backgroundTint="@color/dark_gray"
                 android:inputType="number"
                 android:paddingLeft="10dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
 
             <TextView
                 android:layout_width="30dp"

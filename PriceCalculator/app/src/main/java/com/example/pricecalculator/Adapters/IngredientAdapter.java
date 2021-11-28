@@ -86,7 +86,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             if(ingredientTable.getIngredient_unit_price() % 1 == 0){
                 ingredient_unit_price = String.valueOf((int) ingredientTable.getIngredient_unit_price()) + "원/" + String.valueOf(ingredientTable.getIngredient_unit());
             }else{
-                ingredient_unit_price = String.valueOf(ingredientTable.getIngredient_unit_price()) + "원/" + String.valueOf(ingredientTable.getIngredient_unit());
+                double price = Math.ceil(ingredientTable.getIngredient_unit_price() * 100)/100.0;
+                ingredient_unit_price = String.valueOf(price) + "원/" + String.valueOf(ingredientTable.getIngredient_unit());
             }
             holder.ingredient_name.setText(String.valueOf(ingredientTable.getIngredient_name()));
             holder.ingredient_weight.setText(ingredient_weight);

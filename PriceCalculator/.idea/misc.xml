@@ -37,10 +37,11 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/rv_gradient_table_layout.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/rv_ingredient_table_layout.xml" value="0.22289362113085712" />
-        <entry key="app/src/main/res/layout/rv_menu_ingredient_table_layout.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/rv_menu_ingredient_table_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/rv_menu_table_layout.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/sp_item.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/dropdown_update_delete.xml" value="0.1546875" />
         <entry key="app/src/main/res/menu/show_ingredient_more_iv_items.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/menu/sp_ingredients.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2833333333333333" />
