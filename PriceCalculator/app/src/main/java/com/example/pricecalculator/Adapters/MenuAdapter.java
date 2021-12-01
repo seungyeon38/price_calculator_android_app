@@ -16,20 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.Helper.MenuDatabaseHelper;
 import com.example.pricecalculator.R;
-import com.example.pricecalculator.UpdateMenu;
 
 import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
     List<MenuTable> menuTableList;
+    double costPercentage;
     View view;
 
     MenuDatabaseHelper helper;
 
-    public MenuAdapter(Context context, List<MenuTable> menuTableList) {
+    public MenuAdapter(Context context, List<MenuTable> menuTableList, double cost_percentage) {
         this.context = context;
         this.menuTableList = menuTableList;
+        this.costPercentage = cost_percentage;
 
         helper = MenuDatabaseHelper.getInstance(context);
     }
@@ -43,7 +44,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
             menu_name = itemView.findViewById(R.id.menu_name);
             menu_price = itemView.findViewById(R.id.menu_price);
-//            menu_selling_price = itemView.findViewById(R.id.menu_selling_price);
+            menu_selling_price = itemView.findViewById(R.id.menu_selling_price);
 
             more_iv = itemView.findViewById(R.id.more_iv);
         }
@@ -63,11 +64,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             MenuTable menuTable = menuTableList.get(position);
 
             String menu_price = String.valueOf(menuTable.getMenu_price()) + "원";
-//            String menu_selling_price = String.valueOf(menuTable.getMenu_selling_price()) + "원";
+            String menu_selling_price = "";
+
+            if(costPercentage != 0){
+                menu_selling_price = String.valueOf(menuTable.getMenu_price()/costPercentage * 100) + "원";
+            }
 
             holder.menu_name.setText(menuTable.getMenu_name());
             holder.menu_price.setText(menu_price);
-//            holder.menu_selling_price.setText(menu_selling_price);
+            holder.menu_selling_price.setText(menu_selling_price);
 
             holder.more_iv.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -79,8 +84,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             switch (menuItem.getItemId()){
                                 case R.id.update_id:
-                                    context.startActivity(new Intent(context, UpdateMenu.class)
-                                            .putExtra("menu_table", menuTable));
+//                                    context.startActivity(new Intent(context, UpdateMenu.class)
+//                                            .putExtra("menu_table", menuTable));
                                     break;
                                 case R.id.delete_id:
 

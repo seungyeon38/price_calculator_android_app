@@ -31,13 +31,18 @@ public class ShowMenus extends AppCompatActivity {
 
         helper = MenuDatabaseHelper.getInstance(this);
         helper.showAllMenusData();
+
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void setRecyclerView(List<MenuTable> menuTableList){
+        double costPercentage = 0;
         binding.rvMenuTable.setLayoutManager(new LinearLayoutManager(this));
-        menuAdapter = new MenuAdapter(this, menuTableList);
+        if(!binding.costPercentage.getText().toString().isEmpty()){
+            costPercentage = Double.parseDouble(binding.costPercentage.getText().toString());
+        }
+        menuAdapter = new MenuAdapter(this, menuTableList, costPercentage);
         binding.rvMenuTable.setAdapter(menuAdapter);
     }
 
@@ -67,5 +72,6 @@ public class ShowMenus extends AppCompatActivity {
     }
 
     public void applyCostPercentage(View view) {
+        helper.showAllMenusData();
     }
 }

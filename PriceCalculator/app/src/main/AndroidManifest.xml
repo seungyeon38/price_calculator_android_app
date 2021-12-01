@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PriceCalculator">
         <activity
-            android:name=".AddMenu"
+            android:name=".UpdateMenu"
             android:exported="true" />
         <activity
-            android:name=".UpdateMenu"
+            android:name=".AddMenu"
             android:exported="true" />
         <activity
             android:name=".ShowMenus"

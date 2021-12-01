@@ -9,6 +9,7 @@ import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.ShowMenus;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 // 비동기처리
 public class MenuDatabaseHelper {
@@ -23,36 +24,62 @@ public class MenuDatabaseHelper {
         return new MenuDatabaseHelper(context);
     }
 
+//    public int getLastId(){
+//        final int[] menu_id = new int[1];
+//
+//        class GetMenuTableLastId extends AsyncTask<Void, Void, Integer>{
+//            @Override
+//            protected Integer doInBackground(Void... voids) {
+//                menu_id[0] = DatabaseClient.getInstance(context)
+//                        .getMenuDatabase()
+//                        .menuDAO()
+//                        .getLastId();
+//
+//                return menu_id[0];
+//            }
+//        }
+//
+//        GetMenuTableLastId getMenuTableLastId = new GetMenuTableLastId();
+//        getMenuTableLastId.execute();
+//
+//        return menu_id[0];
+//    }
+
     // Insert Ingredient Data
-    public void addMenu(String menu_name, int menu_price){
-        class NewMenu extends AsyncTask<Void, Void, MenuTable>{
+    public long addMenu(String menu_name, int menu_price) throws ExecutionException, InterruptedException {
+        System.out.print("addMenu");
+        System.out.print(menu_name + " " + menu_price);
+        final long[] menu_id = new long[1];
+        class NewMenu extends AsyncTask<Void, Void, Long>{
             @Override
-            protected MenuTable doInBackground(Void... voids) {
+            protected Long doInBackground(Void... voids) {
                 MenuTable menuTable = new MenuTable();
                 menuTable.setMenu_name(menu_name);
                 menuTable.setMenu_price(menu_price);
 //                menuTable.setMenu_selling_price(menu_selling_price);
 
-                DatabaseClient.getInstance(context)
+                menu_id[0] = DatabaseClient.getInstance(context)
                         .getMenuDatabase()
                         .menuDAO()
                         .insertData(menuTable);
 
-                return menuTable;
+                return menu_id[0];
             }
 
-            @Override
-            protected void onPostExecute(MenuTable menuTable) {
-                super.onPostExecute(menuTable);
-
-                if(menuTable != null){
-                    Toast.makeText(context, menuTable.getMenu_name() + "가 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
+//            @Override
+//            protected void onPostExecute(MenuTable menuTable) {
+//                super.onPostExecute(menuTable);
+//
+//                if(menuTable != null){
+//                    Toast.makeText(context, menuTable.getMenu_name() + "가 추가되었습니다.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
         }
 
         NewMenu newMenu = new NewMenu();
-        newMenu.execute();
+        long menuId = newMenu.execute().get();
+
+        return menuId;
     }
 
     // Show all data from ingredientTable

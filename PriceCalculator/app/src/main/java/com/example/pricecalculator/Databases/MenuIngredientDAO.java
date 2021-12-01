@@ -4,6 +4,12 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RawQuery;
+import androidx.room.Transaction;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
+
+import java.util.List;
 
 @Dao
 public interface MenuIngredientDAO {
@@ -20,5 +26,21 @@ public interface MenuIngredientDAO {
     @Query("DELETE FROM MenuIngredientTable WHERE menu_id= :menu_id")
     void deleteDataByMenuId(int menu_id);
 
-//    @Query("SELECT * FROM ")
+//    @Transaction
+//    @Query("SELECT * FROM MenuTable")
+//    public List<MenuWithIngredients> getMenuWithIngredients();
+
+    @Query("SELECT * FROM MenuIngredientTable WHERE menu_id= :menu_id")
+    public List<MenuIngredientTable> getMenuWithIngredients(int menu_id);
+
+
+//    @RawQuery()
+//    void insertMIData(int menu_id, int ingredient_id, int weight);
+
+    @RawQuery()
+    boolean insertMIData(SupportSQLiteQuery query);
+
 }
+
+
+

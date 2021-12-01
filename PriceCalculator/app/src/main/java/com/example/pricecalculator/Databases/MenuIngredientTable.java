@@ -1,20 +1,17 @@
 package com.example.pricecalculator.Databases;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Junction;
+import androidx.room.Relation;
 
 import java.io.Serializable;
+import java.util.List;
 
 
-@Entity(primaryKeys = {"menu_id", "ingredient_id"},
-        foreignKeys = {
-        @ForeignKey(entity = MenuTable.class,
-                    parentColumns = "menu_id",
-                    childColumns = "menu_id"),
-        @ForeignKey(entity = IngredientTable.class,
-                    parentColumns = "ingredient_id",
-                    childColumns = "ingredient_id")})
+@Entity(primaryKeys = {"menu_id", "ingredient_id"})
 public class MenuIngredientTable implements Serializable {
     @ColumnInfo(name = "menu_id")
     private int menu_id;
@@ -25,9 +22,6 @@ public class MenuIngredientTable implements Serializable {
     @ColumnInfo(name = "menu_ingredient_weight")
     private int menu_ingredient_weight;
 
-
-//    @ColumnInfo(name = "ingredient_unit_price")
-//    private int ingredient_unit_price;
 
     public int getMenu_id() {
         return menu_id;
@@ -61,5 +55,5 @@ public class MenuIngredientTable implements Serializable {
                 ", menu_ingredient_weight=" + menu_ingredient_weight +
                 '}';
     }
-}
 
+}

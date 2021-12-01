@@ -37,7 +37,7 @@
                 android:backgroundTint="@color/dark_gray"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:inputType="number"
+                android:inputType="text"
                 android:paddingLeft="10dp"
                 android:textColor="@color/black" />
 

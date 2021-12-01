@@ -62,12 +62,15 @@ public class MenuIngredientAdapter extends RecyclerView.Adapter<MenuIngredientAd
             String menu_ingredient_weight;
             String menu_ingredient_price;
 
-            if(menuIngredientArrayList.get(position).getMenu_ingredient_weight() % 1 == 0){
-                menu_ingredient_weight = String.valueOf((int) menuIngredientArrayList.get(position).getMenu_ingredient_weight()) + menuIngredientArrayList.get(position).getMenu_ingredient_unit();
-            }else{
-                double weight = Math.ceil(menuIngredientArrayList.get(position).getMenu_ingredient_weight() * 100)/100.0;
-                menu_ingredient_weight = String.valueOf(weight) + menuIngredientArrayList.get(position).getMenu_ingredient_unit();
-            }
+//            if(menuIngredientArrayList.get(position).getMenu_ingredient_weight() % 1 == 0){
+//                menu_ingredient_weight = String.valueOf((int) menuIngredientArrayList.get(position).getMenu_ingredient_weight()) + menuIngredientArrayList.get(position).getMenu_ingredient_unit();
+//            }else{
+//                double weight = Math.ceil(menuIngredientArrayList.get(position).getMenu_ingredient_weight() * 100)/100.0;
+//                menu_ingredient_weight = String.valueOf(weight) + menuIngredientArrayList.get(position).getMenu_ingredient_unit();
+//            }
+
+            menu_ingredient_weight = String.valueOf(menuIngredientArrayList.get(position).getMenu_ingredient_weight()) + menuIngredientArrayList.get(position).getMenu_ingredient_unit();
+
             if(menuIngredientArrayList.get(position).getMenu_ingredient_price() % 1 == 0){
                 menu_ingredient_price = String.valueOf((int) menuIngredientArrayList.get(position).getMenu_ingredient_price()) + "원";
             }else{

@@ -6,13 +6,23 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class MenuWithIngredients {
+public class MenuWithIngredients{
     @Embedded
-    public MenuTable menuTable;
+    public MenuTable menu;
     @Relation(
-            parentColumn = "menu_id",
-            entityColumn = "ingredient_id",
+            parentColumn = "menuId",
+            entityColumn = "ingredientId",
             associateBy = @Junction(MenuIngredientTable.class)
     )
     public List<IngredientTable> ingredientTableList;
 }
+
+//public class PlaylistWithSongs {
+//    @Embedded public Playlist playlist;
+//    @Relation(
+//            parentColumn = "playlistId",
+//            entityColumn = "songId",
+//            associateBy = @Junction(PlaylistSongCrossref.class)
+//    )
+//    public List<Song> songs;
+//}

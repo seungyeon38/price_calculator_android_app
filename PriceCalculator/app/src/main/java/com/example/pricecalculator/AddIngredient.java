@@ -98,11 +98,11 @@ public class AddIngredient extends AppCompatActivity {
             double ingredient_unit_price = Double.parseDouble(binding.ingredientTotalPrice.getText().toString())/Double.parseDouble(binding.ingredientWeight.getText().toString());
 
             helper.addIngredient(binding.ingredientName.getText().toString(),
-                    Integer.parseInt(binding.ingredientWeight.getText().toString()),
-                    binding.spUnit.getSelectedItem().toString(),
-                    Integer.parseInt(binding.ingredientTotalPrice.getText().toString()),
-                    ingredient_unit_price
-                    );
+                Integer.parseInt(binding.ingredientWeight.getText().toString()),
+                binding.spUnit.getSelectedItem().toString(),
+                Integer.parseInt(binding.ingredientTotalPrice.getText().toString()),
+                ingredient_unit_price
+            );
         }
         finish();
     }

@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +18,8 @@ import com.example.pricecalculator.Adapters.MenuIngredientAdapter;
 import com.example.pricecalculator.ArrayData.MenuIngredient;
 import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
+import com.example.pricecalculator.Helper.MenuDatabaseHelper;
+import com.example.pricecalculator.Helper.MenuIngredientDatabaseHelper;
 import com.example.pricecalculator.databinding.ActivityAddMenuBinding;
 
 import java.util.ArrayList;
@@ -33,12 +33,12 @@ public class AddMenu extends AppCompatActivity {
     ArrayList<MenuIngredient> menuIngredientArrayList;
     List<IngredientTable> ingredientList;
     List<String> ingredient_name_list;
+
     MenuIngredientAdapter menuIngredientAdapter;
 
-    IngredientDatabaseHelper helper;
-
-    Dialog addMenuIngredientDialog;
-
+    MenuDatabaseHelper menuDatabaseHelper;
+    IngredientDatabaseHelper ingredientDatabaseHelper;
+    MenuIngredientDatabaseHelper menuIngredientDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +55,12 @@ public class AddMenu extends AppCompatActivity {
 //        menuIngredientAdapter = new MenuIngredientAdapter(this, menuIngredientArrayList);
 //        binding.rvMenuIngredientTable.setAdapter(menuIngredientAdapter);
 
-        helper = IngredientDatabaseHelper.getInstance(this);
+        menuDatabaseHelper = MenuDatabaseHelper.getInstance(this);
+        ingredientDatabaseHelper = IngredientDatabaseHelper.getInstance(this);
+        menuIngredientDatabaseHelper = MenuIngredientDatabaseHelper.getInstance(this);
 
         try {
-            ingredientList = helper.getAllIngredientsData();
+            ingredientList = ingredientDatabaseHelper.getAllIngredientsData();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -97,22 +99,15 @@ public class AddMenu extends AppCompatActivity {
         showDialog();
     }
 
-    public void addMenu(View view) {
-        if(!(menuIngredientArrayList.size() > 0) && !binding.menuName.getText().toString().isEmpty()){
+    public void addMenu(View view) throws ExecutionException, InterruptedException {
+        if(menuIngredientArrayList.size() > 0 && !binding.menuName.getText().toString().isEmpty()){
+            int menu_id = (int)menuDatabaseHelper.addMenu(binding.menuName.getText().toString(), calculateMenuPrice(menuIngredientArrayList));
 
-
+            for(int i=0; i<menuIngredientArrayList.size(); i++){
+                menuIngredientDatabaseHelper.addMenuIngredient(menu_id, menuIngredientArrayList.get(i).getIngredient_id(), menuIngredientArrayList.get(i).getMenu_ingredient_weight());
+            }
         }
-//        if(!binding.ingredientName.getText().toString().isEmpty() && !(binding.spUnit.getSelectedItem() == null) && !binding.ingredientWeight.getText().toString().isEmpty() && !binding.ingredientTotalPrice.getText().toString().isEmpty()){
-//            double ingredient_unit_price = Double.parseDouble(binding.ingredientTotalPrice.getText().toString())/Double.parseDouble(binding.ingredientWeight.getText().toString());
-//
-//            helper.addIngredient(binding.ingredientName.getText().toString(),
-//                    Integer.parseInt(binding.ingredientWeight.getText().toString()),
-//                    binding.spUnit.getSelectedItem().toString(),
-//                    Integer.parseInt(binding.ingredientTotalPrice.getText().toString()),
-//                    ingredient_unit_price
-//            );
-//        }
-//        finish();
+        finish();
     }
 
     public void showDialog(){
@@ -155,7 +150,7 @@ public class AddMenu extends AppCompatActivity {
                 public void onClick(View view) {
                     if(!(spIngredients.getSelectedItem() == null) && !menuIngredientWeight.getText().toString().isEmpty()){
                         IngredientTable ingredient = ingredientNameToEntity(spIngredients.getSelectedItem().toString());
-                        MenuIngredient newMenuIngredient = new MenuIngredient(spIngredients.getSelectedItem().toString(), ingredient.getIngredient_id(), Double.parseDouble(menuIngredientWeight.getText().toString()), ingredient.getIngredient_unit(), calculateIngredientPrice(ingredient.getIngredient_id(), Double.parseDouble(menuIngredientWeight.getText().toString())));
+                        MenuIngredient newMenuIngredient = new MenuIngredient(spIngredients.getSelectedItem().toString(), ingredient.getIngredient_id(), Integer.parseInt(menuIngredientWeight.getText().toString()), ingredient.getIngredient_unit(), calculateIngredientPrice(ingredient.getIngredient_id(), Double.parseDouble(menuIngredientWeight.getText().toString())));
                         menuIngredientArrayList.add(newMenuIngredient);
                         setRecyclerView(menuIngredientArrayList);
                         addMenuIngredientDialog.dismiss(); // 다이얼로그 닫기
@@ -188,5 +183,15 @@ public class AddMenu extends AppCompatActivity {
             }
         }
         return -1;
+    }
+
+    private int calculateMenuPrice(ArrayList<MenuIngredient> menuIngredientList){
+        double total_price = 0;
+
+        for(int i=0; i<menuIngredientList.size(); i++){
+            total_price += menuIngredientList.get(i).getMenu_ingredient_price();
+        }
+
+        return (int)Math.ceil(total_price);
     }
 }

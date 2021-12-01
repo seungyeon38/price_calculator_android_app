@@ -3,6 +3,7 @@ package com.example.pricecalculator.Databases;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -13,7 +14,7 @@ public interface MenuDAO {
     // 필요한 query문 쓰면 됨
 
     @Insert
-    void insertData(MenuTable menuTable);
+    long insertData(MenuTable menuTable);
 
     @Update
     void updateData(MenuTable menuTable);
@@ -23,5 +24,8 @@ public interface MenuDAO {
 
     @Query("SELECT * FROM MenuTable")
     List<MenuTable> selectAll();
+
+//    @Query("SELECT MAX(menu_id) FROM MenuTable")
+//    int getLastId();
 
 }
