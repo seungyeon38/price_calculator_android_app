@@ -26,9 +26,6 @@ public interface MenuIngredientDAO {
     @Query("DELETE FROM MenuIngredientTable WHERE menu_id= :menu_id")
     void deleteDataByMenuId(int menu_id);
 
-//    @Transaction
-//    @Query("SELECT * FROM MenuTable")
-//    public List<MenuWithIngredients> getMenuWithIngredients();
 
     @Query("SELECT * FROM MenuIngredientTable WHERE menu_id= :menu_id")
     public List<MenuIngredientTable> getMenuWithIngredients(int menu_id);
