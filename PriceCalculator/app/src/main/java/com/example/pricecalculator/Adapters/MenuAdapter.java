@@ -1,7 +1,6 @@
 package com.example.pricecalculator.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.Helper.MenuDatabaseHelper;
+import com.example.pricecalculator.Helper.MenuIngredientDatabaseHelper;
 import com.example.pricecalculator.R;
 
 import java.util.List;
@@ -25,14 +25,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     double costPercentage;
     View view;
 
-    MenuDatabaseHelper helper;
+    MenuDatabaseHelper menu_helper;
+    MenuIngredientDatabaseHelper menu_ingredient_helper;
 
     public MenuAdapter(Context context, List<MenuTable> menuTableList, double cost_percentage) {
         this.context = context;
         this.menuTableList = menuTableList;
         this.costPercentage = cost_percentage;
 
-        helper = MenuDatabaseHelper.getInstance(context);
+        menu_helper = MenuDatabaseHelper.getInstance(context);
+        menu_ingredient_helper = MenuIngredientDatabaseHelper.getInstance(context);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -88,6 +90,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 //                                            .putExtra("menu_table", menuTable));
                                     break;
                                 case R.id.delete_id:
+                                    menu_helper.deleteMenuData(menuTable);
+                                    menu_ingredient_helper.deleteMenuIngredientDataByMenuID(menuTable.getMenu_id());
+                                    menuTableList.remove(position);
+                                    notifyDataSetChanged();
+                                    notifyItemRangeChanged(position, menuTableList.size());
 
                                     break;
                             }

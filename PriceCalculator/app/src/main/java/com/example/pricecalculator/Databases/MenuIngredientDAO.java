@@ -15,8 +15,8 @@ import java.util.List;
 public interface MenuIngredientDAO {
     // 필요한 query문 쓰면 됨
     // 메뉴 추가 시
-    @Insert
-    void insertData(MenuIngredientTable menuIngredientTable);
+//    @Insert
+//    void insertData(MenuIngredientTable menuIngredientTable);
 
     // 메뉴의 한 재료만 삭제시
     @Delete
@@ -38,7 +38,7 @@ public interface MenuIngredientDAO {
 //    void insertMIData(int menu_id, int ingredient_id, int weight);
 
     @RawQuery()
-    boolean insertMIData(SupportSQLiteQuery query);
+    long insertMIData(SupportSQLiteQuery query);
 
 }
 

@@ -64,6 +64,23 @@ public class MenuIngredientDatabaseHelper {
         newMenuIngredient.execute();
     }
 
+    // Delete data
+    public void deleteMenuIngredientDataByMenuID(int menu_id){
+        class DeleteMenuIngredientData extends AsyncTask<Void, Void, Void>{
+            @Override
+            protected Void doInBackground(Void... voids) {
+                DatabaseClient.getInstance(context)
+                        .getMenuIngredientDatabase()
+                        .menuIngredientDAO()
+                        .deleteDataByMenuId(menu_id);
+
+                return null;
+            }
+        }
+        DeleteMenuIngredientData deleteMenuIngredientData = new DeleteMenuIngredientData();
+        deleteMenuIngredientData.execute();
+    }
+
 //    public List<MenuIngredientTable> getAllMenuIngredientsData(int menu_id){
 //        class AllMenuIngredients extends AsyncTask<Void, Void, List<MenuIngredientTable>>{
 //            @Override
