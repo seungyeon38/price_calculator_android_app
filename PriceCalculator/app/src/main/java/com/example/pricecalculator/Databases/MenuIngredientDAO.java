@@ -31,9 +31,6 @@ public interface MenuIngredientDAO {
     public List<MenuIngredientTable> getMenuWithIngredients(int menu_id);
 
 
-//    @RawQuery()
-//    void insertMIData(int menu_id, int ingredient_id, int weight);
-
     @RawQuery()
     long insertMIData(SupportSQLiteQuery query);
 
