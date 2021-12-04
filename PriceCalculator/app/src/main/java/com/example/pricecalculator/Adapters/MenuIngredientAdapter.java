@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pricecalculator.ArrayData.MenuIngredient;
 import com.example.pricecalculator.R;
-import com.example.pricecalculator.UpdateIngredient;
+
 
 import java.util.ArrayList;
 import java.util.List;

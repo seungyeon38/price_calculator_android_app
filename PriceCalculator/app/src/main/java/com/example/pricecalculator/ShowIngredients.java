@@ -47,7 +47,9 @@ public class ShowIngredients extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return true;
             }
         }
@@ -64,5 +66,9 @@ public class ShowIngredients extends AppCompatActivity {
 
     public void addIngredient(View view) {
         startActivity(new Intent(this, AddIngredient.class));
+    }
+
+    public void goToAddMenu(View view) {
+        startActivity(new Intent(this, AddMenu.class));
     }
 }

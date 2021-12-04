@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.pricecalculator.Databases.DatabaseClient;
+import com.example.pricecalculator.Databases.MenuIngredientTable;
 import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.ShowMenus;
 
@@ -132,6 +133,7 @@ public class MenuDatabaseHelper {
                 }
             }
         }
+
         UpdateMenuData updateMenuData = new UpdateMenuData();
         updateMenuData.execute();
     }
@@ -152,4 +154,24 @@ public class MenuDatabaseHelper {
         DeleteMenuData deleteMenuData = new DeleteMenuData();
         deleteMenuData.execute();
     }
+
+//    public MenuTable getMenuTableByMenuId(int menu_id) throws ExecutionException, InterruptedException {
+//        class Menu extends AsyncTask<Void, Void, MenuTable>{
+//            @Override
+//            protected MenuTable doInBackground(Void... voids) {
+//                MenuTable menu = DatabaseClient.getInstance(context)
+//                        .getMenuDatabase()
+//                        .menuDAO()
+//                        .getMenuByMenuId(menu_id);
+//
+//                return menu;
+//            }
+//        }
+//
+//        Menu menu = new Menu();
+//        return menu.execute().get();
+//    }
+
+
+
 }

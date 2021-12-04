@@ -25,17 +25,48 @@
 <!--            android:textSize="18dp"-->
 <!--            android:textStyle="bold" />-->
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_35"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="5dp"
-            android:onClick="addIngredient"
+<!--        <ImageButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_add_35"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:onClick="addIngredient"-->
 
-            />
+<!--            />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="addIngredient"
+                android:drawableRight="@drawable/ic_baseline_add_24"
+                android:text="재료 추가"
+                android:textSize="15dp"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="goToAddMenu"
+                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:text="메뉴 추가하기"
+                android:textSize="15dp"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

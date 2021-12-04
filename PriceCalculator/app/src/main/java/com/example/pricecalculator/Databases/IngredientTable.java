@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class IngredientTable implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private int ingredient_id;
+    private int id;
 
     @ColumnInfo(name = "ingredient_name")
     private String ingredient_name;
@@ -28,12 +28,12 @@ public class IngredientTable implements Serializable {
     @ColumnInfo(name = "ingredient_unit_price")
     private double ingredient_unit_price;
 
-    public int getIngredient_id() {
-        return ingredient_id;
+    public int getId() {
+        return id;
     }
 
-    public void setIngredient_id(int ingredient_id) {
-        this.ingredient_id = ingredient_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIngredient_name() {
@@ -79,7 +79,7 @@ public class IngredientTable implements Serializable {
     @Override
     public String toString() {
         return "IngredientTable{" +
-                "ingredient_id=" + ingredient_id +
+                "ingredient_id=" + id +
                 ", ingredient_name='" + ingredient_name + '\'' +
                 ", ingredient_weight=" + ingredient_weight +
                 ", ingredient_unit='" + ingredient_unit + '\'' +

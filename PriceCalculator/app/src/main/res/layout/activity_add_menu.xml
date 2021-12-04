@@ -52,15 +52,25 @@
                 android:textSize="16dp" />
         </LinearLayout>
 
-        <ImageButton
+<!--        <ImageButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:onClick="addMenuIngredient"-->
+<!--            android:padding="5dp"-->
+<!--            android:src="@drawable/ic_baseline_add_35" />-->
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="5dp"
             android:background="@android:color/transparent"
             android:onClick="addMenuIngredient"
-            android:padding="5dp"
-            android:src="@drawable/ic_baseline_add_35" />
+            android:drawableRight="@drawable/ic_baseline_add_24"
+            android:text="재료 추가"
+            android:textSize="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

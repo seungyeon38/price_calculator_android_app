@@ -2,19 +2,14 @@ package com.example.pricecalculator.Helper;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import com.example.pricecalculator.ArrayData.MenuIngredient;
 import com.example.pricecalculator.Databases.DatabaseClient;
-import com.example.pricecalculator.Databases.IngredientTable;
-import com.example.pricecalculator.Databases.MenuIngredientDatabase;
 import com.example.pricecalculator.Databases.MenuIngredientTable;
-import com.example.pricecalculator.Databases.MenuWithIngredients;
-import com.example.pricecalculator.ShowIngredients;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MenuIngredientDatabaseHelper {
 
@@ -81,20 +76,73 @@ public class MenuIngredientDatabaseHelper {
         deleteMenuIngredientData.execute();
     }
 
-//    public List<MenuIngredientTable> getAllMenuIngredientsData(int menu_id){
-//        class AllMenuIngredients extends AsyncTask<Void, Void, List<MenuIngredientTable>>{
+    public List<MenuIngredientTable> getMenuIngredientsByMenuId(int menu_id) throws ExecutionException, InterruptedException {
+        class MenuIngredients extends AsyncTask<Void, Void, List<MenuIngredientTable>>{
+            @Override
+            protected List<MenuIngredientTable> doInBackground(Void... voids) {
+                List<MenuIngredientTable> list = DatabaseClient.getInstance(context)
+                        .getMenuIngredientDatabase()
+                        .menuIngredientDAO()
+                        .getMenuIngredientsByMenuId(menu_id);
+
+                return list;
+            }
+        }
+
+        MenuIngredients allMenuIngredients = new MenuIngredients();
+        return allMenuIngredients.execute().get();
+    }
+
+    public List<MenuIngredientTable> getMenuIngredientsByIngredientId(int ingredient_id) throws ExecutionException, InterruptedException {
+        class MenuIngredients extends AsyncTask<Void, Void, List<MenuIngredientTable>>{
+            @Override
+            protected List<MenuIngredientTable> doInBackground(Void... voids) {
+                List<MenuIngredientTable> list = DatabaseClient.getInstance(context)
+                        .getMenuIngredientDatabase()
+                        .menuIngredientDAO()
+                        .getMenuIngredientsByIngredientId(ingredient_id);
+
+                return list;
+            }
+        }
+
+        MenuIngredients menuIngredients = new MenuIngredients();
+        return menuIngredients.execute().get();
+    }
+
+//    public List<IngredientAndMenuIngredient> getIngredientsInfoByIngredientId(int ingredient_id) throws ExecutionException, InterruptedException {
+//        class MenuIngredients extends AsyncTask<Void, Void, List<IngredientAndMenuIngredient>>{
 //            @Override
-//            protected List<MenuIngredientTable> doInBackground(Void... voids) {
-//                List<MenuIngredientTable> list = DatabaseClient.getInstance(context)
+//            protected List<IngredientAndMenuIngredient> doInBackground(Void... voids) {
+//                List<IngredientAndMenuIngredient> list = DatabaseClient.getInstance(context)
 //                        .getMenuIngredientDatabase()
 //                        .menuIngredientDAO()
-//                        .getMenuWithIngredients(menu_id);
+//                        .getIngredientsInfoByIngredientId(ingredient_id);
 //
 //                return list;
 //            }
 //        }
 //
-//        AllMenuIngredients allMenuIngredients = new AllMenuIngredients();
-//        return allMenuIngredients.execute().get();
+//        MenuIngredients menuIngredients = new MenuIngredients();
+//        Log.i("tag", "menuIngredients.execute().get().toString()");
+//        Log.i("tag", menuIngredients.execute().get().toString());
+//        return menuIngredients.execute().get();
+//    }
+//
+//    public List<IngredientAndMenuIngredient> getAllIngredientsInfo() throws ExecutionException, InterruptedException {
+//        class MenuIngredients extends AsyncTask<Void, Void, List<IngredientAndMenuIngredient>>{
+//            @Override
+//            protected List<IngredientAndMenuIngredient> doInBackground(Void... voids) {
+//                List<IngredientAndMenuIngredient> list = DatabaseClient.getInstance(context)
+//                        .getMenuIngredientDatabase()
+//                        .menuIngredientDAO()
+//                        .getAllIngredientsInfo();
+//
+//                return list;
+//            }
+//        }
+//
+//        MenuIngredients menuIngredients = new MenuIngredients();
+//        return menuIngredients.execute().get();
 //    }
 }

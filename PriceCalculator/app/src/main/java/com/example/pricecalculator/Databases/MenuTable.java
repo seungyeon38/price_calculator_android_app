@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class MenuTable implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private int menu_id;
+    private int id;
 
     @ColumnInfo(name = "menu_name")
     private String menu_name;
@@ -22,12 +22,12 @@ public class MenuTable implements Serializable {
 //    private int menu_selling_price;
 
 
-    public int getMenu_id() {
-        return menu_id;
+    public int getId() {
+        return id;
     }
 
-    public void setMenu_id(int menu_id) {
-        this.menu_id = menu_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMenu_name() {
@@ -57,7 +57,7 @@ public class MenuTable implements Serializable {
     @Override
     public String toString() {
         return "MenuTable{" +
-                "menu_id=" + menu_id +
+                "menu_id=" + id +
                 ", menu_name='" + menu_name + '\'' +
                 ", menu_price=" + menu_price +
                 '}';

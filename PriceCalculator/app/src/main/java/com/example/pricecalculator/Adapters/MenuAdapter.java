@@ -1,6 +1,7 @@
 package com.example.pricecalculator.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.pricecalculator.Databases.MenuTable;
 import com.example.pricecalculator.Helper.MenuDatabaseHelper;
 import com.example.pricecalculator.Helper.MenuIngredientDatabaseHelper;
 import com.example.pricecalculator.R;
+import com.example.pricecalculator.UpdateMenu;
 
 import java.util.List;
 
@@ -86,12 +88,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             switch (menuItem.getItemId()){
                                 case R.id.update_id:
-//                                    context.startActivity(new Intent(context, UpdateMenu.class)
-//                                            .putExtra("menu_table", menuTable));
+                                    context.startActivity(new Intent(context, UpdateMenu.class)
+                                            .putExtra("menu_table", menuTable));
                                     break;
                                 case R.id.delete_id:
                                     menu_helper.deleteMenuData(menuTable);
-                                    menu_ingredient_helper.deleteMenuIngredientDataByMenuID(menuTable.getMenu_id());
+                                    menu_ingredient_helper.deleteMenuIngredientDataByMenuID(menuTable.getId());
                                     menuTableList.remove(position);
                                     notifyDataSetChanged();
                                     notifyItemRangeChanged(position, menuTableList.size());

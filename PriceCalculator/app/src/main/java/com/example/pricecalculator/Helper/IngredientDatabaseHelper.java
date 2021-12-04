@@ -99,6 +99,23 @@ public class IngredientDatabaseHelper {
         return allIngredients.execute().get();
     }
 
+    public List<IngredientTable> getIngredientsDataBy() throws ExecutionException, InterruptedException {
+        class AllIngredients extends AsyncTask<Void, Void, List<IngredientTable>> {
+            @Override
+            protected List<IngredientTable> doInBackground(Void... voids) {
+                List<IngredientTable> list = DatabaseClient.getInstance(context)
+                        .getIngredientDatabase()
+                        .ingredientDAO()
+                        .selectAll();
+
+                return list;
+            }
+        }
+        AllIngredients allIngredients = new AllIngredients();
+
+        return allIngredients.execute().get();
+    }
+
     // Update data
     public void updateIngredientData(IngredientTable table, String ingredient_name, int ingredient_weight, String ingredient_unit, int ingredient_total_price, double ingredient_unit_price){
         class UpdateIngredientData extends AsyncTask<Void, Void, IngredientTable>{

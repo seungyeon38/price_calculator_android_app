@@ -25,7 +25,9 @@ public interface MenuDAO {
     @Query("SELECT * FROM MenuTable")
     List<MenuTable> selectAll();
 
+//    @Query("SELECT * FROM MenuTable WHERE id= :menu_id")
+//    MenuTable getMenuByMenuId(int menu_id);
+
 //    @Query("SELECT MAX(menu_id) FROM MenuTable")
 //    int getLastId();
-
 }

@@ -8,5 +8,4 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 public abstract class MenuIngredientDatabase extends RoomDatabase{
     public abstract MenuIngredientDAO menuIngredientDAO();
 
-
 }

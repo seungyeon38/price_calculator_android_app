@@ -28,12 +28,22 @@ public interface MenuIngredientDAO {
 
 
     @Query("SELECT * FROM MenuIngredientTable WHERE menu_id= :menu_id")
-    public List<MenuIngredientTable> getMenuWithIngredients(int menu_id);
+    public List<MenuIngredientTable> getMenuIngredientsByMenuId(int menu_id);
 
 
     @RawQuery()
     long insertMIData(SupportSQLiteQuery query);
 
+
+    @Query("SELECT * FROM MenuIngredientTable WHERE ingredient_id= :ingredient_id")
+    public List<MenuIngredientTable> getMenuIngredientsByIngredientId(int ingredient_id);
+
+
+//    @Query("SELECT IngredientTable.*, MenuIngredientTable.* FROM MenuIngredientTable INNER JOIN IngredientTable ON (MenuIngredientTable.ingredient_id = IngredientTable.id) WHERE MenuIngredientTable.ingredient_id = :ingredient_id")
+//    public List<IngredientAndMenuIngredient> getIngredientsInfoByIngredientId(int ingredient_id);
+//
+//    @Query("SELECT IngredientTable.*, MenuIngredientTable.* FROM MenuIngredientTable INNER JOIN IngredientTable ON MenuIngredientTable.ingredient_id = IngredientTable.id")
+//    public List<IngredientAndMenuIngredient> getAllIngredientsInfo();
 }
 
 

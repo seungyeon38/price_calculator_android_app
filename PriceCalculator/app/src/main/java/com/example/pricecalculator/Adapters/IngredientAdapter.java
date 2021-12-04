@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pricecalculator.Databases.IngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
 import com.example.pricecalculator.R;
-import com.example.pricecalculator.UpdateIngredient;
 
 import java.util.List;
 
@@ -97,28 +96,37 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             holder.more_iv.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    PopupMenu popupMenu = new PopupMenu(context, holder.more_iv);
-                    popupMenu.getMenuInflater().inflate(R.menu.dropdown_update_delete, popupMenu.getMenu());
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
-                            switch (menuItem.getItemId()){
-                                case R.id.update_id:
-                                    context.startActivity(new Intent(context, UpdateIngredient.class)
-                                    .putExtra("ingredient_table", ingredientTable));
-                                    break;
-                                case R.id.delete_id:
-                                    helper.deleteIngredientData(ingredientTable);
-                                    ingredientTableList.remove(position);
-                                    notifyDataSetChanged();
-                                    notifyItemRangeChanged(position, ingredientTableList.size());
-                                    break;
-                            }
-                            return false;
-                        }
-                    });
-                    popupMenu.show();
+                    helper.deleteIngredientData(ingredientTable);
+                    ingredientTableList.remove(position);
+                    notifyDataSetChanged();
+                    notifyItemRangeChanged(position, ingredientTableList.size());
                 }
+
+
+//                @Override
+//                public void onClick(View view) {
+//                    PopupMenu popupMenu = new PopupMenu(context, holder.more_iv);
+//                    popupMenu.getMenuInflater().inflate(R.menu.dropdown_update_delete, popupMenu.getMenu());
+//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                        @Override
+//                        public boolean onMenuItemClick(MenuItem menuItem) {
+//                            switch (menuItem.getItemId()){
+//                                case R.id.update_id:
+//                                    context.startActivity(new Intent(context, UpdateIngredient.class)
+//                                    .putExtra("ingredient_table", ingredientTable));
+//                                    break;
+//                                case R.id.delete_id:
+//                                    helper.deleteIngredientData(ingredientTable);
+//                                    ingredientTableList.remove(position);
+//                                    notifyDataSetChanged();
+//                                    notifyItemRangeChanged(position, ingredientTableList.size());
+//                                    break;
+//                            }
+//                            return false;
+//                        }
+//                    });
+//                    popupMenu.show();
+//                }
             });
         }
     }
