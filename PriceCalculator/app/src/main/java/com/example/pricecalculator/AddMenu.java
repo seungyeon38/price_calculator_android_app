@@ -78,17 +78,6 @@ public class AddMenu extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.90);
-//        int height = (int)(getResources().getDisplayMetrics().heightPixels * 0.90);
-//
-//        getDialog().getWindow().setLayout(width, height);
-//    }
-
-
     public void setRecyclerView(ArrayList<MenuIngredient> menuIngredientArrayList){
         binding.rvMenuIngredientTable.setLayoutManager(new LinearLayoutManager(this));
 //        menuIngredientArrayList = new ArrayList<>();
