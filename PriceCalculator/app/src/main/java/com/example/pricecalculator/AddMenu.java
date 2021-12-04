@@ -147,11 +147,6 @@ public class AddMenu extends AppCompatActivity {
             ingredientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spIngredients.setAdapter(ingredientAdapter);
 
-//            int width = (int)(getResources().getDisplayMetrics().widthPixels * 0.90);
-//            int height = (int)(getResources().getDisplayMetrics().heightPixels * 0.90);
-//
-//            addMenuIngredientDialog.getWindow().setLayout(width, height);
-
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
             lp.copyFrom(addMenuIngredientDialog.getWindow().getAttributes());
             lp.width = (int)(getResources().getDisplayMetrics().widthPixels * 0.90);
