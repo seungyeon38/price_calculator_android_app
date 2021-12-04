@@ -42,6 +42,7 @@ public class ShowMenus extends AppCompatActivity {
         if(!binding.costPercentage.getText().toString().isEmpty()){
             costPercentage = Double.parseDouble(binding.costPercentage.getText().toString());
         }
+
         menuAdapter = new MenuAdapter(this, menuTableList, costPercentage);
         binding.rvMenuTable.setAdapter(menuAdapter);
     }

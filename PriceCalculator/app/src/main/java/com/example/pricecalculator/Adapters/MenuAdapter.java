@@ -71,7 +71,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             String menu_selling_price = "";
 
             if(costPercentage != 0){
-                menu_selling_price = String.valueOf(menuTable.getMenu_price()/costPercentage * 100) + "원";
+                double cost_percentage = menuTable.getMenu_price()/costPercentage * 100;
+//
+//                if(cost_percentage % 1 == 0){
+//                }else{
+//                    menu_selling_price = String.valueOf(Math.ceil(cost_percentage) + "원";
+//                }
+
+                menu_selling_price = String.valueOf((int)Math.ceil(cost_percentage)) + "원";
+
             }
 
             holder.menu_name.setText(menuTable.getMenu_name());

@@ -8,10 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pricecalculator.Adapters.MenuIngredientAdapter;
@@ -152,14 +156,34 @@ public class UpdateMenu extends AppCompatActivity {
 
             Spinner spIngredients = (Spinner) mView.findViewById(R.id.sp_ingredients);
             EditText menuIngredientWeight = (EditText) mView.findViewById(R.id.menu_ingredient_weight);
+            TextView menuIngredientUnit = (TextView) mView.findViewById(R.id.menu_ingredient_unit);
 
             ArrayAdapter<String> ingredientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ingredient_name_list);
 
             ingredientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spIngredients.setAdapter(ingredientAdapter);
 
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(addMenuIngredientDialog.getWindow().getAttributes());
+            lp.width = (int)(getResources().getDisplayMetrics().widthPixels * 0.90);
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
             addMenuIngredientDialog.setContentView(mView);
             addMenuIngredientDialog.show(); // 다이얼로그 띄우기
+
+            Window window = addMenuIngredientDialog.getWindow();
+            window.setAttributes(lp);
+
+            spIngredients.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    menuIngredientUnit.setText(ingredientNameToObject(ingredient_name_list.get(position)).getIngredient_unit());
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             /* 이 함수 안에 원하는 디자인과 기능을 구현하면 된다. */
 
