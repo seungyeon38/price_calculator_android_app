@@ -66,24 +66,28 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(menuTableList != null && menuTableList.size() > 0){
             MenuTable menuTable = menuTableList.get(position);
-
-            String menu_price = String.valueOf(menuTable.getMenu_price()) + "원";
+//            String menu_price = String.valueOf(menuTable.getMenu_price()) + "원";
+            int menu_price;
+            String menu_price_str;
             String menu_selling_price = "";
 
+//            if(menuTable.getMenu_price() % 1 == 0){
+//                menu_price = (int)menuTable.getMenu_price();
+//            }else{
+//                menu_price = (int)Math.ceil(menuTable.getMenu_price());
+//            }
+
+            menu_price = (int)Math.ceil(menuTable.getMenu_price());
+            menu_price_str = String.valueOf(menu_price) + "원";
+
             if(costPercentage != 0){
-                double cost_percentage = menuTable.getMenu_price()/costPercentage * 100;
-//
-//                if(cost_percentage % 1 == 0){
-//                }else{
-//                    menu_selling_price = String.valueOf(Math.ceil(cost_percentage) + "원";
-//                }
+                double cost_percentage = menu_price/costPercentage * 100;
 
                 menu_selling_price = String.valueOf((int)Math.ceil(cost_percentage)) + "원";
-
             }
 
             holder.menu_name.setText(menuTable.getMenu_name());
-            holder.menu_price.setText(menu_price);
+            holder.menu_price.setText(menu_price_str);
             holder.menu_selling_price.setText(menu_selling_price);
 
             holder.more_iv.setOnClickListener(new View.OnClickListener(){

@@ -215,13 +215,13 @@ public class AddMenu extends AppCompatActivity {
         return -1;
     }
 
-    private int calculateMenuPrice(ArrayList<MenuIngredient> menuIngredientList){
+    private double calculateMenuPrice(ArrayList<MenuIngredient> menuIngredientList){
         double total_price = 0;
 
         for(int i=0; i<menuIngredientList.size(); i++){
             total_price += menuIngredientList.get(i).getMenu_ingredient_price();
         }
 
-        return (int)Math.ceil(total_price);
+        return total_price;
     }
 }

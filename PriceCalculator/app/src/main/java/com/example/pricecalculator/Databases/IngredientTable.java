@@ -2,12 +2,13 @@ package com.example.pricecalculator.Databases;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
 // Entity means table
-@Entity
+@Entity(indices = {@Index(value = {"ingredient_name"}, unique = true)})
 public class IngredientTable implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

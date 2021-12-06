@@ -47,7 +47,7 @@ public class MenuDatabaseHelper {
 //    }
 
     // Insert Ingredient Data
-    public long addMenu(String menu_name, int menu_price) throws ExecutionException, InterruptedException {
+    public long addMenu(String menu_name, double menu_price) throws ExecutionException, InterruptedException {
         System.out.print("addMenu");
         System.out.print(menu_name + " " + menu_price);
         final long[] menu_id = new long[1];

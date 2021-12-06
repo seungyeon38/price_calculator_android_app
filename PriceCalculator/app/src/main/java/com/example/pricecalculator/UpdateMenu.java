@@ -160,6 +160,7 @@ public class UpdateMenu extends AppCompatActivity {
 
             ArrayAdapter<String> ingredientAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ingredient_name_list);
 
+
             ingredientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spIngredients.setAdapter(ingredientAdapter);
 
