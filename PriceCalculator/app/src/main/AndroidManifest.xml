@@ -11,25 +11,31 @@
         android:theme="@style/Theme.PriceCalculator">
         <activity
             android:name=".UpdateMenu"
-            android:exported="true" />
+            android:exported="true"
+            android:label="메뉴 수정"/>
         <activity
             android:name=".AddMenu"
-            android:exported="true" />
+            android:exported="true"
+            android:label="메뉴 추가"/>
         <activity
             android:name=".ShowMenus"
-            android:exported="true" />
-        <activity
-            android:name=".UpdateIngredient"
-            android:exported="true" />
+            android:exported="true"
+            android:label="메뉴 리스트"/>
+<!--        <activity-->
+<!--            android:name=".UpdateIngredient"-->
+<!--            android:exported="true" />-->
         <activity
             android:name=".AddIngredient"
-            android:exported="true" />
+            android:exported="true"
+            android:label="재료 추가"/>
         <activity
             android:name=".ShowIngredients"
-            android:exported="true" />
+            android:exported="true"
+            android:label="재료 리스트" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="원알팔">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

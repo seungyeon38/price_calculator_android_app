@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        setContentView(view);
-
 
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        getSupportActionBar().setTitle("원알팔");
+
+        setContentView(view);
+
     }
 
     public void showIngredients(View view) {

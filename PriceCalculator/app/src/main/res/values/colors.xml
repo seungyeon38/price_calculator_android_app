@@ -12,5 +12,8 @@
     <color name="gray">#878787</color>
     <color name="dark_gray">#616161</color>
     <color name="primary_green">#9CC094</color>
-    <color name="primary_yellow">#FFF7E0</color>
+    <color name="primary_yellow">#fffcf5</color>
+    <color name="table_head">#ede8df</color>
+    <color name="table_body">#fafaf5</color>
+<!--    <color name="primary_yellow">#FFF7E0</color>-->
 </resources>

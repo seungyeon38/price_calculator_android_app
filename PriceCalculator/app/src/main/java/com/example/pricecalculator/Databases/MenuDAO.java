@@ -25,6 +25,8 @@ public interface MenuDAO {
     @Query("SELECT * FROM MenuTable")
     List<MenuTable> selectAll();
 
+    @Query("DELETE FROM MenuTable WHERE id= :menu_id")
+    void deleteMenuDataById(int menu_id);
 //    @Query("SELECT * FROM MenuTable WHERE id= :menu_id")
 //    MenuTable getMenuByMenuId(int menu_id);
 

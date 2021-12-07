@@ -118,7 +118,7 @@ public class AddMenu extends AppCompatActivity {
             }
         }
         finish();
-        startActivity(new Intent(this, ShowMenus.class));
+//        startActivity(new Intent(this, ShowMenus.class));
     }
 
     public void showDialog(){

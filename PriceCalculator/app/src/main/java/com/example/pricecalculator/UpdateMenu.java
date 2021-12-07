@@ -138,7 +138,8 @@ public class UpdateMenu extends AppCompatActivity {
             }
 //            finish();
         }
-        startActivity(new Intent(this, ShowMenus.class));
+        finish();
+//        startActivity(new Intent(this, ShowMenus.class));
     }
 
     public void addMenuIngredient(View view) {

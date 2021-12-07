@@ -81,7 +81,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f0d8b6"
+                android:background="@color/table_head"
                 android:stretchColumns="0,1,2">
 
                 <TableRow android:background="@drawable/table_header_border_style">
@@ -159,7 +159,7 @@
                 android:id="@+id/rv_menu_ingredient_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f5f0e9" />
+                android:background="@color/table_body" />
         </LinearLayout>
     </LinearLayout>
 

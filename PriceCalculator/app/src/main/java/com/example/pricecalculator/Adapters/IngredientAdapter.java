@@ -1,23 +1,24 @@
 package com.example.pricecalculator.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pricecalculator.Databases.IngredientTable;
+import com.example.pricecalculator.Databases.MenuIngredientTable;
 import com.example.pricecalculator.Helper.IngredientDatabaseHelper;
+import com.example.pricecalculator.Helper.MenuDatabaseHelper;
+import com.example.pricecalculator.Helper.MenuIngredientDatabaseHelper;
 import com.example.pricecalculator.R;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder>{
@@ -26,13 +27,17 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     List<IngredientTable> ingredientTableList;
     View view;
 
-    IngredientDatabaseHelper helper;
+    IngredientDatabaseHelper ingredient_helper;
+    MenuDatabaseHelper menu_helper;
+    MenuIngredientDatabaseHelper menu_ingredient_helper;
 
     public IngredientAdapter(Context context, List<IngredientTable> ingredientTableList){
         this.context = context;
         this.ingredientTableList = ingredientTableList;
 
-        helper = IngredientDatabaseHelper.getInstance(context);
+        ingredient_helper = IngredientDatabaseHelper.getInstance(context);
+        menu_helper = MenuDatabaseHelper.getInstance(context);
+        menu_ingredient_helper = MenuIngredientDatabaseHelper.getInstance(context);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -96,8 +101,22 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             holder.more_iv.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    helper.deleteIngredientData(ingredientTable);
+                    ingredient_helper.deleteIngredientData(ingredientTable);
                     ingredientTableList.remove(position);
+                    List<MenuIngredientTable> menuIngredientTableList;
+                    try {
+                        menuIngredientTableList = menu_ingredient_helper.getMenuIngredientsByIngredientId(ingredientTable.getId());
+
+                        for(int i=0; i<menuIngredientTableList.size(); i++){
+                            menu_helper.deleteMenuDataById(menuIngredientTableList.get(i).getMenu_id());
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
                     notifyDataSetChanged();
                     notifyItemRangeChanged(position, ingredientTableList.size());
                 }

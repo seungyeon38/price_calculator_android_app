@@ -11,62 +11,72 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--        <Button-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_gravity="right"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:background="@drawable/main_btn_style"-->
-<!--            android:onClick="addGradient"-->
-<!--            android:text="재료 추가"-->
-<!--            android:textColor="#616161"-->
-<!--            android:textSize="18dp"-->
-<!--            android:textStyle="bold" />-->
+        <!--        <Button-->
+        <!--            android:layout_width="150dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_gravity="right"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginEnd="10dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:background="@drawable/main_btn_style"-->
+        <!--            android:onClick="addGradient"-->
+        <!--            android:text="재료 추가"-->
+        <!--            android:textColor="#616161"-->
+        <!--            android:textSize="18dp"-->
+        <!--            android:textStyle="bold" />-->
 
-<!--        <ImageButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_baseline_add_35"-->
-<!--            android:background="@android:color/transparent"-->
-<!--            android:padding="5dp"-->
-<!--            android:layout_gravity="right"-->
-<!--            android:layout_marginRight="5dp"-->
-<!--            android:onClick="addIngredient"-->
+        <!--        <ImageButton-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:src="@drawable/ic_baseline_add_35"-->
+        <!--            android:background="@android:color/transparent"-->
+        <!--            android:padding="5dp"-->
+        <!--            android:layout_gravity="right"-->
+        <!--            android:layout_marginRight="5dp"-->
+        <!--            android:onClick="addIngredient"-->
 
-<!--            />-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="5dp"
-                android:background="@android:color/transparent"
-                android:onClick="addIngredient"
-                android:drawableRight="@drawable/ic_baseline_add_24"
-                android:text="재료 추가"
-                android:textSize="15dp"/>
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="5dp"
-                android:background="@android:color/transparent"
-                android:onClick="goToAddMenu"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:text="메뉴 추가하기"
-                android:textSize="15dp"/>
-        </LinearLayout>
+        <!--            />-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:gravity="center"-->
+        <!--            >-->
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="left"-->
+        <!--                android:layout_marginLeft="5dp"-->
+        <!--                android:background="@android:color/transparent"-->
+        <!--                android:onClick="goToAddMenu"-->
+        <!--                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"-->
+        <!--                android:text="메뉴 추가하기"-->
+        <!--                android:textSize="15dp"/>-->
+        <!--            <View-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="0dp"-->
+        <!--                android:layout_weight="1" />-->
+        <!--            <Button-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="right"-->
+        <!--                android:layout_marginRight="5dp"-->
+        <!--                android:background="@android:color/transparent"-->
+        <!--                android:onClick="addIngredient"-->
+        <!--                android:drawableRight="@drawable/ic_baseline_add_24"-->
+        <!--                android:text="재료 추가"-->
+        <!--                android:textSize="15dp"/>-->
+        <!--        </LinearLayout>-->
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:onClick="addIngredient"
+            android:text="재료 추가하기"
+            android:textSize="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,11 +87,11 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f0d8b6"
+                android:background="@color/table_head"
                 android:stretchColumns="0,1,2,3">
-                <TableRow
-                    android:background="@drawable/table_header_border_style"
-                    >
+
+                <TableRow android:background="@drawable/table_header_border_style">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -94,8 +104,7 @@
                         android:text="재료"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_weight="1"
@@ -108,8 +117,7 @@
                         android:text="무게/수량"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_weight="2"
@@ -122,8 +130,7 @@
                         android:text="가격"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_weight="2"
@@ -136,12 +143,11 @@
                         android:text="단위당 가격"
                         android:textColor="@color/dark_brown"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_weight="1"
                         android:layout_width="30dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:ems="1"
                         android:gravity="center"
@@ -150,8 +156,7 @@
                         android:paddingBottom="5dp"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </TableRow>
             </TableLayout>
             <!--해당 액티비티에 리사이클러뷰를 추가-->
@@ -159,7 +164,7 @@
                 android:id="@+id/rv_ingredient_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f5f0e9" />
+                android:background="@color/table_body" />
         </LinearLayout>
     </LinearLayout>
 

@@ -18,7 +18,10 @@ import com.example.pricecalculator.databinding.ActivityShowMenusBinding;
 
 import java.util.List;
 
+
+
 public class ShowMenus extends AppCompatActivity {
+//    public static Activity _Show_Menu_Activity;
 
     private ActivityShowMenusBinding binding;
 
@@ -35,6 +38,8 @@ public class ShowMenus extends AppCompatActivity {
         binding = ActivityShowMenusBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+//        _Show_Menu_Activity = ShowMenus.this;
 
         // toolbar 뒤로가기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

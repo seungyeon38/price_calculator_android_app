@@ -155,6 +155,23 @@ public class MenuDatabaseHelper {
         deleteMenuData.execute();
     }
 
+    // Delete data
+    public void deleteMenuDataById(int menu_id){
+        class DeleteMenuData extends AsyncTask<Void, Void, Void> {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                DatabaseClient.getInstance(context)
+                        .getMenuDatabase()
+                        .menuDAO()
+                        .deleteMenuDataById(menu_id);
+
+                return null;
+            }
+        }
+        DeleteMenuData deleteMenuData = new DeleteMenuData();
+        deleteMenuData.execute();
+    }
+
 //    public MenuTable getMenuTableByMenuId(int menu_id) throws ExecutionException, InterruptedException {
 //        class Menu extends AsyncTask<Void, Void, MenuTable>{
 //            @Override
