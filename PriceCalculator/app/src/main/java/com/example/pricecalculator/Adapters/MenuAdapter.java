@@ -30,7 +30,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     MenuDatabaseHelper menu_helper;
     MenuIngredientDatabaseHelper menu_ingredient_helper;
 
-    public MenuAdapter(Context context, List<MenuTable> menuTableList, double cost_percentage) {
+    public MenuAdapter(Context context, List<MenuTable> menuTableList, int cost_percentage) {
         this.context = context;
         this.menuTableList = menuTableList;
         this.costPercentage = cost_percentage;

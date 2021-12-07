@@ -29,7 +29,7 @@ tools:context=".ShowMenus">
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/cost_percentage"
+                android:id="@+id/selling_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"

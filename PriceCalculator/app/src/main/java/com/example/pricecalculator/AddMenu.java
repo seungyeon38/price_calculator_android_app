@@ -44,6 +44,8 @@ public class AddMenu extends AppCompatActivity {
     IngredientDatabaseHelper ingredientDatabaseHelper;
     MenuIngredientDatabaseHelper menuIngredientDatabaseHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
